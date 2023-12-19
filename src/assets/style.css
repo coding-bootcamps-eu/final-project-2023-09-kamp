@@ -1,0 +1,17 @@
+@import url(https://fonts.bunny.net/css?family=montserrat:500,700,900);
+/* font-weight 500 = Fließtext/
+/ font-weight 700 = Überschriften/
+/ font-weight 900 = AppName*/
+
+:root {
+  --text-color: #373b32;
+  --btn-color: #606e51;
+  --background-color: #606e51a2;
+  --highlight-color: #bcff75;
+  --btn-text-color: white;
+  --main-font: sans-serif;
+}
+
+html {
+  font-family: 'Montserrat', sans-serif;
+}
