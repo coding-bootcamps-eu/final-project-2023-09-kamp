@@ -32,6 +32,12 @@ export const useMainStore = defineStore('mainStore', {
         .then((jsonData) => {
           this.disabilities = jsonData
         })
+    },
+    setSelectedRegion(regionId) {
+      this.selectedRegionId = regionId
+    },
+    setSelectedDisabilities(disabilities) {
+      this.selecteddisabilitiesId = disabilities
     }
   }
 })
