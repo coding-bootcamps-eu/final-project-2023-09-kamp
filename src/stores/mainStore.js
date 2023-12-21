@@ -2,7 +2,14 @@ import { defineStore } from 'pinia'
 
 export const useMainStore = defineStore('mainStore', {
   state() {
-    return { regions: [], selectedRegionId: null } //id
+    return {
+      regions: [],
+      selectedRegionId: null,
+      disabilities: [],
+      selecteddisabilitiesId: [],
+      destinations: [],
+      selecteddestinationId: null
+    }
   },
   actions: {
     loadRegion() {
@@ -10,6 +17,20 @@ export const useMainStore = defineStore('mainStore', {
         .then((response) => response.json())
         .then((jsonData) => {
           this.regions = jsonData
+        })
+    },
+    loadDestination() {
+      fetch('http://localhost:3333/destinations')
+        .then((response) => response.json())
+        .then((jsonData) => {
+          this.destinations = jsonData
+        })
+    },
+    loadDisability() {
+      fetch('http://localhost:3333/disabilities')
+        .then((response) => response.json())
+        .then((jsonData) => {
+          this.disabilities = jsonData
         })
     }
   }
