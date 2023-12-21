@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import DisabilitySelectionView from '../views/DisabilitySelectionView'
-import DestinationsPageView from '../views/DestinationsPageView'
-import DestinationDetailView from '../views/DestinationDetailView'
+import DisabilitySelectionView from '../views/DisabilitySelectionView.vue'
+import DestinationsPageView from '../views/DestinationsPageView.vue'
+import DestinationDetailView from '../views/DestinationDetailView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
