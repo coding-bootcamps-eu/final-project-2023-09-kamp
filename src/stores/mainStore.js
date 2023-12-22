@@ -4,7 +4,7 @@ export const useMainStore = defineStore('mainStore', {
   state() {
     return {
       regions: [],
-      selectedRegionId: null,
+      selectedRegionId: '',
       disabilities: [],
       selecteddisabilitiesId: [],
       destinations: [],
