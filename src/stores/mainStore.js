@@ -6,9 +6,9 @@ export const useMainStore = defineStore('mainStore', {
       regions: [],
       selectedRegionId: '',
       disabilities: [],
-      selecteddisabilitiesId: [],
+      selectedDisabilitiesId: [],
       destinations: [],
-      selecteddestinationId: null
+      selectedDestinationId: null
     }
   },
   actions: {

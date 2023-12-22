@@ -1,78 +1,89 @@
 <template>
-  <NavBar />
   <div>
-    <header>
-      <article>
-        <h1>Ergebnisse</h1>
-        <p>Klicke auf dein gewünschtes Erlebnis:</p>
-      </article>
-    </header>
-    <main>
-      <!-- v-model="MainStore.selectedDestinationId" ausgewählte Filter übertragen und zeigen in for-Schleife => destiantion in MainStore.selecteddisabilitiesId -->
-      <!-- @click="showDetailPage" -->
-      <ul>
-        <li
-          v-for="destination in filteredDestinations"
-          :key="destination.id"
-          :value="destination.id"
-        >
-          <router-link to="'/detail/:' + destination.id">zum Erlebnis</router-link>
-          <img :src="destination.imgSrc" :alt="destination.altText" />
+    <h1>Ergebnisse</h1>
+    <p>Klicke auf dein gewünschtes Ergebnis:</p>
+    <ul>
+      <li v-for="destination in filteredDestinations" :key="destination.id">
+        <router-link :to="`/detail/${destination.id}`">zum Erlebnis</router-link>
+
+        <div>
+          <img
+            :src="`http://localhost:3333/` + destination.imgSrc"
+            :alt="destination.altText"
+            style="max-width: 100%"
+          />
           <h2>{{ destination.name }}</h2>
-          <p>
-            <small>{{ destination.category }}</small>
-          </p>
-        </li>
-      </ul>
-    </main>
+          <p>Category: {{ destination.category }}</p>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import NavBar from '@/components/NavBar.vue'
-import { useMainStore } from '@/stores/mainStore'
-import { ref, onMounted, watch } from 'vue'
-import { useRouter } from 'vue-router'
+import { useMainStore } from '../stores/mainStore.js'
+import { computed, onMounted, watch } from 'vue'
 
 export default {
   setup() {
     const mainStore = useMainStore()
-    const filteredDestinations = ref([])
-    const router = useRouter()
 
-    const showDetailPage = (destinationId) => {
-      router.push({
-        name: 'detail',
-        params: { id: destinationId }
-      })
-    }
-    const filterDestinations = () => {
+    const filteredDestinations = computed(() => {
       const selectedRegionId = mainStore.selectedRegionId
-      const selectedDisabilities = mainStore.selecteddisabilitiesId || []
+      const selectedDisabilities = mainStore.selecteddisabilitiesId
 
-      // Example filtering based on region and disabilities
-      filteredDestinations.value = mainStore.destinations.filter((destination) => {
+      console.log(selectedRegionId)
+      console.log(selectedDisabilities)
+
+      console.log(mainStore.destinations.length)
+      console.log(mainStore.destinations)
+
+      let destinationsToFilter = mainStore.destinations
+
+      if (mainStore.filteredDestinations && mainStore.filteredDestinations.length > 0) {
+        destinationsToFilter = mainStore.filteredDestinations
+      }
+
+      const result = destinationsToFilter.filter((destination) => {
+        console.log(destination)
+
+        //Prüfung ob die Region übereinstimmt oder keien Region ausgewählt
         const regionMatch = !selectedRegionId || destination.regionId === selectedRegionId
+
+        //Prüfung ob disabilities übereinstimmen
+        let destinationDisabilities
+
+        // muss in array
+        if (Array.isArray(destination.disabilityId)) {
+          destinationDisabilities = destination.disabilityId
+        } else {
+          destinationDisabilities = [destination.disabilityId]
+        }
+
         const disabilityMatch =
           selectedDisabilities.length === 0 ||
-          selectedDisabilities.includes(destination.disabilityId)
+          selectedDisabilities.every((selectedDisability) =>
+            destinationDisabilities.includes(selectedDisability)
+          )
 
         return regionMatch && disabilityMatch
       })
-    }
+
+      console.log(result)
+
+      return result
+    })
 
     onMounted(() => {
       mainStore.loadDestination()
     })
 
-    watch([() => mainStore.selectedRegionId, () => mainStore.selecteddisabilitiesId], () => {
-      filterDestinations()
+    // Log the filteredDestinations value inside onMounted
+    watch(filteredDestinations, (newVal) => {
+      console.log('Filtered Destinations:', newVal)
     })
 
-    return { mainStore, showDetailPage, filterDestinations, filteredDestinations }
-  },
-  components: {
-    NavBar
+    return { mainStore, filteredDestinations }
   }
 }
 </script>
