@@ -19,12 +19,15 @@ export const useMainStore = defineStore('mainStore', {
           this.regions = jsonData
         })
     },
-    loadDestination() {
-      fetch('http://localhost:3333/destinations')
-        .then((response) => response.json())
-        .then((jsonData) => {
-          this.destinations = jsonData
-        })
+    async loadDestination() {
+      try {
+        const response = await fetch('http://localhost:3333/destinations')
+        const jsonData = await response.json()
+        this.destinations = jsonData
+      } catch (error) {
+        console.error('Fehler beim Laden der Ziele:', error)
+        throw error
+      }
     },
     loadDisability() {
       fetch('http://localhost:3333/disabilities')
