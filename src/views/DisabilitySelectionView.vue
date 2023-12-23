@@ -10,7 +10,7 @@
       >
         <div
           class="disability-rectangle"
-          :class="{ selected: mainStore.selecteddisabilitiesId.includes(disability.id) }"
+          :class="{ selected: mainStore.selectedDisabilitiesId.includes(disability.id) }"
         >
           {{ disability.name }}
         </div>
@@ -24,7 +24,7 @@
 
 <script>
 import { useMainStore } from '@/stores/mainStore'
-import { ref, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 
 export default {
@@ -37,22 +37,22 @@ export default {
     })
 
     const toggleSelection = (disabilityId) => {
-      const index = mainStore.selecteddisabilitiesId.indexOf(disabilityId)
+      const index = mainStore.selectedDisabilitiesId.indexOf(disabilityId)
       if (index === -1) {
-        mainStore.selecteddisabilitiesId.push(disabilityId)
+        mainStore.selectedDisabilitiesId.push(disabilityId)
       } else {
-        mainStore.selecteddisabilitiesId.splice(index, 1)
+        mainStore.selectedDisabilitiesId.splice(index, 1)
       }
     }
 
     const showResults = () => {
       // Save selected disabilities to Pinia store before navigating
-      mainStore.selecteddisabilitiesId = mainStore.selecteddisabilitiesId
+      mainStore.selectedDisabilitiesId
 
       // Use Vue Router to navigate to the destinations page
       router.push({
         name: 'destinations',
-        query: { disabilities: mainStore.selecteddisabilitiesId }
+        query: { disabilities: mainStore.selectedDisabilitiesId }
       })
     }
 
