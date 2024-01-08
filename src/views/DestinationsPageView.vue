@@ -1,8 +1,8 @@
 <template>
   <div>
     <h1>Ergebnisse</h1>
-    <p>Klicke auf dein gewünschtes Ergebnis:</p>
-    <ul>
+    <p>Klicke auf dein gewünschtes Erlebnis:</p>
+    <ul v-if="filteredDestinations.length > 0">
       <li
         v-for="destination in filteredDestinations"
         :key="destination.id"
@@ -19,16 +19,20 @@
         <!-- :to={name: 'detail, params:{destination.id}} -->
       </li>
     </ul>
+    <p v-else>Leider gibt es für deine Suche keine passenden Erlebnisse.</p>
   </div>
 </template>
 
 <script>
-import { useMainStore } from '../stores/mainStore.js'
+import { useMainStore } from '@/stores/mainStore.js'
 
 export default {
+  setup() {
+    const mainStore = useMainStore()
+    return { mainStore }
+  },
   data() {
     return {
-      mainStore: useMainStore(),
       filteredDestinations: []
     }
   },
@@ -82,12 +86,7 @@ export default {
         return regionMatch && disabilityMatch
       })
     },
-    loadDestinations() {
-      this.mainStore.loadDestination().then(() => {
-        // Nach laden der Daten filtern der Ziele => im Mainstore loadDestination() mit promise!!
-        this.filterDestinations()
-      })
-    },
+
     selectDestination(destinationId) {
       // Hier setzt du die selectedDestinationId im mainStore
       this.mainStore.setSelectedDestination(destinationId)
@@ -96,7 +95,6 @@ export default {
   },
   // lifecycle hook, ausführung bei erstellung der Instanz in der oder mounted()???
   created() {
-    this.loadDestinations() // laden der Reiseziele und speichern im mainstore, s.o. in methods
     this.filterDestinations() // laden der gefilterten Reiseziele, s.o. in methods
   },
   watch: {

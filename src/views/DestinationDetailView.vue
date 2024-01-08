@@ -31,34 +31,48 @@ import 'leaflet/dist/leaflet.css'
 import { useMainStore } from '../stores/mainStore.js'
 
 export default {
+  setup() {
+    const mainStore = useMainStore()
+    return { mainStore }
+  },
   data() {
     return {
-      selectedDestination: {}
+      selectedDestination: {},
+      map: null
     }
   },
-  mounted() {
+  async mounted() {
     this.map = L.map(this.$refs.map).setView([51.505, -0.09], 13)
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors'
     }).addTo(this.map)
 
-    const destinations = [
-      { name: 'Alpen', coordinates: [47.4215, 10.9856] },
-      { name: 'Konstanz', coordinates: [47.6779, 9.1732] }
-    ]
+    try {
+      const response = await fetch('http://localhost:3333/destinations')
+      const data = await response.json()
 
-    destinations.forEach((destination) => {
-      L.marker(destination.coordinates).addTo(this.map).bindPopup(destination.name).openPopup()
-    })
+      data.forEach((destination) => {
+        L.marker(destination.coordinates).addTo(this.map).bindPopup(destination.name).openPopup()
+      })
+
+      /*
+      this.selectedDestination = data[0]
+      */
+
+      if (this.selectedDestination) {
+        const [latitude, longitude] = this.selectedDestination.coordinates
+        this.map.setView([latitude, longitude], 13)
+      }
+    } catch (error) {
+      console.error('Fehler beim Laden der Daten:', error)
+    }
   },
   created() {
-    const mainStore = useMainStore()
-    const selectedDestinationId = mainStore.selectedDestinationId
-
+    const selectedDestinationId = this.$route.params.id
     //selectedDestination definieren
     if (selectedDestinationId) {
-      this.selectedDestination = mainStore.destinations.find(
+      this.selectedDestination = this.mainStore.destinations.find(
         (destination) => destination.id === selectedDestinationId //.find = durchsucht array nach passender ID
       )
     } else {
