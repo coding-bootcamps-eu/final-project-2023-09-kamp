@@ -7,15 +7,15 @@
         v-for="destination in filteredDestinations"
         :key="destination.id"
         class="destination-list"
+        @click="selectDestination(destination.id)"
       >
-        <h2>{{ destination.name }}</h2>
-        <figure class="img-figure">
-          <img :src="getImgSrc(destination)" :alt="destination.altText" class="img" />
-          <figcaption class="category">{{ destination.category }}</figcaption>
-        </figure>
-        <router-link :to="`/detail/${destination.id}`" class="btn-to-detail"
-          >zum Erlebnis</router-link
-        >
+        <router-link :to="`/detail/${destination.id}`">
+          <h2>{{ destination.name }}</h2>
+          <figure class="img-figure">
+            <img :src="getImgSrc(destination)" :alt="destination.altText" class="img" />
+            <figcaption class="category">{{ destination.category }}</figcaption>
+          </figure>
+        </router-link>
         <!-- :to={name: 'detail, params:{destination.id}} -->
       </li>
     </ul>
@@ -23,12 +23,15 @@
 </template>
 
 <script>
-import { useMainStore } from '../stores/mainStore.js'
+import { useMainStore } from '@/stores/mainStore.js'
 
 export default {
+  setup() {
+    const mainStore = useMainStore()
+    return { mainStore }
+  },
   data() {
     return {
-      mainStore: useMainStore(),
       filteredDestinations: []
     }
   },
@@ -82,16 +85,15 @@ export default {
         return regionMatch && disabilityMatch
       })
     },
-    loadDestinations() {
-      this.mainStore.loadDestination().then(() => {
-        // Nach laden der Daten filtern der Ziele => im Mainstore loadDestination() mit promise!!
-        this.filterDestinations()
-      })
+
+    selectDestination(destinationId) {
+      // Hier setzt du die selectedDestinationId im mainStore
+      this.mainStore.setSelectedDestination(destinationId)
+      console.log(destinationId)
     }
   },
   // lifecycle hook, ausführung bei erstellung der Instanz in der oder mounted()???
   created() {
-    this.loadDestinations() // laden der Reiseziele und speichern im mainstore, s.o. in methods
     this.filterDestinations() // laden der gefilterten Reiseziele, s.o. in methods
   },
   watch: {

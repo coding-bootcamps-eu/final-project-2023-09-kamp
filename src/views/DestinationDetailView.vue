@@ -1,104 +1,91 @@
 <template>
   <div>
-    <h1>{{ destination }}</h1>
-    <main>
-      <article>
-        <div class="img-container">
-          <img :src="getImgSrc(destination)" :alt="destination.altText" class="img" />
-        </div>
-        <p>
-          <small>{{ $route }}</small>
-        </p>
-        <p class="text-container">{{ destination.description }}</p>
-        <section>
-          <h2>Öffnungszeiten</h2>
-          <p>{{ destination.openingTime }} - {{ destination.closingTime }}</p>
-        </section>
-        <section>
-          <h2>Kosten</h2>
-          <p>{{ destination.price }}</p>
-        </section>
-        <section>
-          <h2>Ort</h2>
-          <div class="map-outer-container">
-            <div class="map-container" ref="map"></div>
-          </div>
-        </section>
-      </article>
-    </main>
+    <h1>{{ selectedDestination.name }}</h1>
+    <div class="img-container">
+      <img :src="getImgSrc(selectedDestination)" :alt="selectedDestination.altText" />
+    </div>
+    <p>
+      <small>{{ selectedDestination.category }}</small>
+    </p>
+    <p class="text-container">{{ selectedDestination.description }}</p>
+    <section>
+      <h2>Öffnungszeiten</h2>
+      <p>{{ selectedDestination.openingTime }} - {{ selectedDestination.closingTime }}</p>
+    </section>
+    <section>
+      <h2>Kosten</h2>
+      <p>{{ selectedDestination.price }}</p>
+    </section>
+    <section>
+      <h2>Ort</h2>
+      <div class="map-outer-container">
+        <div class="map-container" ref="map"></div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+import { useMainStore } from '../stores/mainStore.js'
 
 export default {
+  setup() {
+    const mainStore = useMainStore()
+    return { mainStore }
+  },
   data() {
     return {
-      destination: {}
+      selectedDestination: {},
+      map: null
     }
   },
-  async created() {
-    const response = await fetch('http://localhost:8080/destinations' + this.route.params.id)
-    this.destination = await response.json()
-  },
+  async mounted() {
+    this.map = L.map(this.$refs.map).setView([51.505, -0.09], 13)
 
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(this.map)
+
+    try {
+      const response = await fetch('http://localhost:3333/destinations')
+      const data = await response.json()
+
+      data.forEach((destination) => {
+        L.marker(destination.coordinates).addTo(this.map).bindPopup(destination.name).openPopup()
+      })
+
+      /*
+      this.selectedDestination = data[0]
+      */
+
+      if (this.selectedDestination) {
+        const [latitude, longitude] = this.selectedDestination.coordinates
+        this.map.setView([latitude, longitude], 13)
+      }
+    } catch (error) {
+      console.error('Fehler beim Laden der Daten:', error)
+    }
+  },
+  created() {
+    const selectedDestinationId = this.$route.params.id
+    //selectedDestination definieren
+    if (selectedDestinationId) {
+      this.selectedDestination = this.mainStore.destinations.find(
+        (destination) => destination.id === selectedDestinationId //.find = durchsucht array nach passender ID
+      )
+    } else {
+      console.error('Kein Erlebnis gefunden!')
+    }
+  },
   methods: {
     getImgSrc(destination) {
-      if (destination.imgSrc) {
-        return `http://localhost:3333/${destination.imgSrc}`
-      } else {
-        return 'http://localhost:3333/img/destinations/ChineseGardenMunich.jpg'
-      }
+      return `http://localhost:3333/${destination.imgSrc}`
     }
-
-    /*
-    initMap(coordinates) {
-      this.map = L.map(this.$refs.map).setView(coordinates, 13)
-
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
-      }).addTo(this.map)
-
-      L.marker(coordinates).addTo(this.map).bindPopup(this.destination.name).openPopup()
-    }*/
-  },
-  /*
-  mounted() {
-    this.fetchDestination()
-
-    this.map = L.map(this.$refs.map).setView([51.505, -0.09], 13)
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors'
-    }).addTo(this.map)
-
-    this.destinations.forEach((destination) => {
-      if (destination.coordinates) {
-        L.marker(destination.coordinates).addTo(this.map).bindPopup(destination.name).openPopup()
-      }
-    })
-  }*/
-  mounted() {
-    this.map = L.map(this.$refs.map).setView([51.505, -0.09], 13)
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors'
-    }).addTo(this.map)
-
-    const destinations = [
-      { name: 'Alpen', coordinates: [47.4215, 10.9856] },
-      { name: 'Konstanz', coordinates: [47.6779, 9.1732] }
-    ]
-
-    destinations.forEach((destination) => {
-      L.marker(destination.coordinates).addTo(this.map).bindPopup(destination.name).openPopup()
-    })
   }
 }
 </script>
-
 <style scoped>
 body {
   margin: 50px;
