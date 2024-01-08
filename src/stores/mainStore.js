@@ -41,6 +41,9 @@ export const useMainStore = defineStore('mainStore', {
     },
     setSelectedDisabilities(disabilities) {
       this.selecteddisabilitiesId = disabilities
+    },
+    setSelectedDestination(destinationId) {
+      this.selectedDestinationId = destinationId
     }
   }
 })
