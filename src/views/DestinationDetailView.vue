@@ -1,51 +1,39 @@
 <template>
-  <header>
-    <article>
-      <h1 v-for="region in regions" :key="region.id">{{ region.name }}</h1>
-    </article>
-  </header>
-  <main>
-    <article v-for="destination in destinations" :key="destination.id">
-      <h2>{{ destination.name }}</h2>
-      <div class="img-container">
-        <img :src="destination.imgSrc" alt="Bild" />
+  <div>
+    <h1>{{ selectedDestination.name }}</h1>
+    <div class="img-container">
+      <img :src="getImgSrc(selectedDestination)" :alt="selectedDestination.altText" />
+    </div>
+    <p>
+      <small>{{ selectedDestination.category }}</small>
+    </p>
+    <p class="text-container">{{ selectedDestination.description }}</p>
+    <section>
+      <h2>Öffnungszeiten</h2>
+      <p>{{ selectedDestination.openingTime }} - {{ selectedDestination.closingTime }}</p>
+    </section>
+    <section>
+      <h2>Kosten</h2>
+      <p>{{ selectedDestination.price }}</p>
+    </section>
+    <section>
+      <h2>Ort</h2>
+      <div class="map-outer-container">
+        <div class="map-container" ref="map"></div>
       </div>
-      <p>
-        <small>{{ destination.category }}</small>
-      </p>
-      <p class="text-container">{{ destination.description }}</p>
-      <section>
-        <h2>Öffnungszeiten</h2>
-        <p>{{ destination.openingTime }} - {{ destination.closingTime }}</p>
-      </section>
-      <section>
-        <h2>Kosten</h2>
-        <p>{{ destination.price }}</p>
-      </section>
-      <section>
-        <h2>Ort</h2>
-        <div class="map-outer-container">
-          <div class="map-container" ref="map"></div>
-        </div>
-      </section>
-    </article>
-  </main>
+    </section>
+  </div>
 </template>
 
 <script>
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-//import NavBar from "./components/Navbar.vue";
+import { useMainStore } from '../stores/mainStore.js'
 
 export default {
-  name: 'HomeView',
-  components: {
-    //NavBar,
-  },
   data() {
     return {
-      regions: [],
-      destinations: []
+      selectedDestination: {}
     }
   },
   mounted() {
@@ -65,15 +53,25 @@ export default {
     })
   },
   created() {
-    fetch('http://localhost:8080/destinations')
-      .then((response) => response.json())
-      .then((jsonData) => {
-        this.destinations = jsonData
-      })
+    const mainStore = useMainStore()
+    const selectedDestinationId = mainStore.selectedDestinationId
+
+    //selectedDestination definieren
+    if (selectedDestinationId) {
+      this.selectedDestination = mainStore.destinations.find(
+        (destination) => destination.id === selectedDestinationId //.find = durchsucht array nach passender ID
+      )
+    } else {
+      console.error('Kein Erlebnis gefunden!')
+    }
+  },
+  methods: {
+    getImgSrc(destination) {
+      return `http://localhost:3333/${destination.imgSrc}`
+    }
   }
 }
 </script>
-
 <style scoped>
 body {
   margin: 50px;

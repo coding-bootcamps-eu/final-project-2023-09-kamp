@@ -7,15 +7,15 @@
         v-for="destination in filteredDestinations"
         :key="destination.id"
         class="destination-list"
+        @click="selectDestination(destination.id)"
       >
-        <h2>{{ destination.name }}</h2>
-        <figure class="img-figure">
-          <img :src="getImgSrc(destination)" :alt="destination.altText" class="img" />
-          <figcaption class="category">{{ destination.category }}</figcaption>
-        </figure>
-        <router-link :to="`/detail/${destination.id}`" class="btn-to-detail"
-          >zum Erlebnis</router-link
-        >
+        <router-link :to="`/detail/${destination.id}`">
+          <h2>{{ destination.name }}</h2>
+          <figure class="img-figure">
+            <img :src="getImgSrc(destination)" :alt="destination.altText" class="img" />
+            <figcaption class="category">{{ destination.category }}</figcaption>
+          </figure>
+        </router-link>
         <!-- :to={name: 'detail, params:{destination.id}} -->
       </li>
     </ul>
@@ -87,6 +87,11 @@ export default {
         // Nach laden der Daten filtern der Ziele => im Mainstore loadDestination() mit promise!!
         this.filterDestinations()
       })
+    },
+    selectDestination(destinationId) {
+      // Hier setzt du die selectedDestinationId im mainStore
+      this.mainStore.setSelectedDestination(destinationId)
+      console.log(destinationId)
     }
   },
   // lifecycle hook, ausführung bei erstellung der Instanz in der oder mounted()???
