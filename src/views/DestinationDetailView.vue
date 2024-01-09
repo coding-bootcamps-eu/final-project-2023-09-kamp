@@ -1,21 +1,26 @@
 <template>
   <div>
-    <h1>{{ selectedDestination.name }}</h1>
-    <div class="img-container">
-      <img :src="getImgSrc(selectedDestination)" :alt="selectedDestination.altText" />
-    </div>
-    <p>
-      <small>{{ selectedDestination.category }}</small>
-    </p>
-    <p class="text-container">{{ selectedDestination.description }}</p>
-    <section>
-      <h2>Öffnungszeiten</h2>
-      <p>{{ selectedDestination.openingTime }} - {{ selectedDestination.closingTime }}</p>
-    </section>
-    <section>
-      <h2>Kosten</h2>
-      <p>{{ selectedDestination.price }}</p>
-    </section>
+    <button @click="readPage">Seite vorlesen</button>
+
+    <navbar />
+    <template v-if="selectedDestination">
+      <h1>{{ selectedDestination.name }}</h1>
+      <div class="img-container">
+        <img :src="getImgSrc(selectedDestination)" :alt="selectedDestination.altText" />
+      </div>
+      <p>
+        <small>{{ selectedDestination.category }}</small>
+      </p>
+      <p class="text-container">{{ selectedDestination.description }}</p>
+      <section>
+        <h2>Öffnungszeiten</h2>
+        <p>{{ selectedDestination.openingTime }} - {{ selectedDestination.closingTime }}</p>
+      </section>
+      <section>
+        <h2>Kosten</h2>
+        <p>{{ selectedDestination.price }}</p>
+      </section>
+    </template>
     <section>
       <h2>Ort</h2>
       <div class="map-outer-container">
@@ -29,6 +34,7 @@
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { useMainStore } from '../stores/mainStore.js'
+import NavBar from '@/components/NavBar.vue'
 
 export default {
   setup() {
@@ -37,10 +43,15 @@ export default {
   },
   data() {
     return {
-      selectedDestination: {},
-      map: null
+      map: null,
+      selectedDestinationId: null
     }
   },
+
+  components: {
+    navbar: NavBar
+  },
+
   async mounted() {
     this.map = L.map(this.$refs.map).setView([51.505, -0.09], 13)
 
@@ -69,19 +80,56 @@ export default {
     }
   },
   created() {
-    const selectedDestinationId = this.$route.params.id
+    this.selectedDestinationId = this.$route.params.id
     //selectedDestination definieren
-    if (selectedDestinationId) {
-      this.selectedDestination = this.mainStore.destinations.find(
-        (destination) => destination.id === selectedDestinationId //.find = durchsucht array nach passender ID
+  },
+  computed: {
+    selectedDestination() {
+      return this.mainStore.destinations.find(
+        (destination) => destination.id === this.selectedDestinationId
       )
-    } else {
-      console.error('Kein Erlebnis gefunden!')
     }
   },
   methods: {
     getImgSrc(destination) {
       return `http://localhost:3333/${destination.imgSrc}`
+    },
+    readPage() {
+      if ('speechSynthesis' in window) {
+        const destinationName = this.selectedDestination.name
+        const OpeningTimes =
+          this.selectedDestination.openingTime + ' - ' + this.selectedDestination.closingTime
+        const destinationDescr = this.selectedDestination.description
+        const altText = this.selectedDestination.altText
+        const destinationPrice = this.selectedDestination.price
+        const indoorOutdoor = this.selectedDestination.category
+
+        if (window.speechSynthesis.speak) {
+          const output = new SpeechSynthesisUtterance(
+            destinationName +
+              ' ' +
+              indoorOutdoor +
+              ' ' +
+              altText +
+              ' ' +
+              destinationDescr +
+              ' ' +
+              'Öffnungszeiten' +
+              OpeningTimes +
+              ' ' +
+              'Kosten' +
+              destinationPrice
+          )
+
+          output.lang = 'de-DE'
+
+          window.speechSynthesis.speak(output)
+        } else {
+          console.error('Die SpeechSynthesisUtterance-Methode wird nicht unterstützt.')
+        }
+      } else {
+        console.error('Die Web Speech API wird in diesem Browser nicht unterstützt.')
+      }
     }
   }
 }

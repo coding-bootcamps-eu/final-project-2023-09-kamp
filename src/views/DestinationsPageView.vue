@@ -1,36 +1,49 @@
 <template>
   <div>
+    <navbar />
+
     <h1>Ergebnisse</h1>
-    <p>Klicke auf dein gewünschtes Ergebnis:</p>
-    <ul>
+    <p>Klicke auf dein gewünschtes Erlebnis:</p>
+    <ul v-if="filteredDestinations.length > 0">
       <li
         v-for="destination in filteredDestinations"
         :key="destination.id"
         class="destination-list"
+        @click="selectDestination(destination.id)"
       >
-        <h2>{{ destination.name }}</h2>
-        <figure class="img-figure">
-          <img :src="getImgSrc(destination)" :alt="destination.altText" class="img" />
-          <figcaption class="category">{{ destination.category }}</figcaption>
-        </figure>
-        <router-link :to="`/detail/${destination.id}`" class="btn-to-detail"
-          >zum Erlebnis</router-link
-        >
+        <router-link :to="`/detail/${destination.id}`">
+          <h2 class="destination-name">{{ destination.name }}</h2>
+          <small>{{ destination.subtitle }}</small>
+          <figure class="img-figure">
+            <img :src="getImgSrc(destination)" :alt="destination.altText" class="img" />
+            <figcaption class="category">{{ destination.category }}</figcaption>
+          </figure>
+        </router-link>
         <!-- :to={name: 'detail, params:{destination.id}} -->
       </li>
     </ul>
+    <p v-else>Leider gibt es für deine Suche keine passenden Erlebnisse.</p>
   </div>
 </template>
 
 <script>
-import { useMainStore } from '../stores/mainStore.js'
+import { useMainStore } from '@/stores/mainStore.js'
+
+import NavBar from '@/components/NavBar.vue'
 
 export default {
+  setup() {
+    const mainStore = useMainStore()
+    return { mainStore }
+  },
+
   data() {
     return {
-      mainStore: useMainStore(),
       filteredDestinations: []
     }
+  },
+  components: {
+    navbar: NavBar
   },
   computed: {
     //Region aus MainStore laden
@@ -82,16 +95,15 @@ export default {
         return regionMatch && disabilityMatch
       })
     },
-    loadDestinations() {
-      this.mainStore.loadDestination().then(() => {
-        // Nach laden der Daten filtern der Ziele => im Mainstore loadDestination() mit promise!!
-        this.filterDestinations()
-      })
+
+    selectDestination(destinationId) {
+      // Hier setzt du die selectedDestinationId im mainStore
+      this.mainStore.setSelectedDestination(destinationId)
+      console.log(destinationId)
     }
   },
   // lifecycle hook, ausführung bei erstellung der Instanz in der oder mounted()???
   created() {
-    this.loadDestinations() // laden der Reiseziele und speichern im mainstore, s.o. in methods
     this.filterDestinations() // laden der gefilterten Reiseziele, s.o. in methods
   },
   watch: {
@@ -106,6 +118,10 @@ export default {
 .destination-list {
   list-style-type: none;
   color: var(--text-color);
+}
+
+.destination-name {
+  text-decoration: none;
 }
 .img-figure {
   margin: 0;
