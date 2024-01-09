@@ -1,8 +1,10 @@
 <template>
-  <nav>
-    <router-link to="/"><img src="/src/assets/svg/home.svg" />Home</router-link>
+  <nav class="nav">
+    <button @click="goBack" class="nav-btn">
+      <img src="/src/assets/svg/arrow_left.svg" />
+    </button>
 
-    <button @click="goBack">Zurück <img src="/src/assets/svg/arrow_left.svg" /></button>
+    <router-link to="/"><img src="/src/assets/svg/home.svg" class="nav-btn" /></router-link>
   </nav>
 </template>
 
