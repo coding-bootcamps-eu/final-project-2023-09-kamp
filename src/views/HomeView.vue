@@ -18,7 +18,13 @@
       </select>
       <button @click="startAdventure" class="start-button">Los Geht's!</button>
     </div>
-    <p v-if="showWarning" class="warning">Bitte wählen Sie zuerst eine Region aus!</p>
+    <div v-if="showWarning" :class="{ 'popup-warning': true, 'custom-background': true }">
+      <div class="popup-inhalt">
+        <span class="close" @click="closePopup"></span>
+        <h2>Hallo Entdecker!</h2>
+        <p>Wähle zuerst eine Region aus.</p>
+      </div>
+    </div>
   </main>
 </template>
 
@@ -40,7 +46,8 @@ export default {
         showWarning.value = true
         setTimeout(() => {
           showWarning.value = false
-        }, 2000)
+          debugger
+        }, 2500)
         return
       }
 
@@ -110,7 +117,7 @@ export default {
     background-color: var(--background-color);
     color: var(--btn-text-color);
     font-weight: bold;
-    width: 40%;
+    width: 80%;
     padding: 10px;
     border: none;
     border-radius: 5px;
@@ -118,11 +125,30 @@ export default {
     font-family: var(--main-font);
   }
 
-  .warning {
-    color: red;
-    margin-top: 10px;
+  .custom-background {
+    background-color: lightblue;
+  }
+  .popup-warning {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    box-shadow: 0 0 5px lightblue;
+    padding: 10px;
+    max-width: 40%;
+  }
+
+  .popup-inhalt {
     text-align: center;
-    font-family: var(--main-font);
+  }
+
+  .closePopup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
   }
 }
 </style>
