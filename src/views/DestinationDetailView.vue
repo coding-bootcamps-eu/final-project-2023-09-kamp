@@ -5,6 +5,7 @@
     <navbar />
     <template v-if="selectedDestination">
       <h1>{{ selectedDestination.name }}</h1>
+      <small>{{ selectedDestination.subtitle }}</small>
       <div class="img-container">
         <img :src="getImgSrc(selectedDestination)" :alt="selectedDestination.altText" />
       </div>
@@ -14,15 +15,21 @@
       <p class="text-container">{{ selectedDestination.description }}</p>
       <section>
         <h2>Öffnungszeiten</h2>
-        <p>{{ selectedDestination.openingTime }} - {{ selectedDestination.closingTime }}</p>
+        <p>{{ selectedDestination.openingTime }} - {{ selectedDestination.closingTime }} Uhr</p>
       </section>
       <section>
         <h2>Kosten</h2>
         <p>{{ selectedDestination.price }}</p>
       </section>
+      <section>
+        <h2>Anfahrt und ÖPNV</h2>
+        <p>{{ selectedDestination.street }}</p>
+        <p>{{ selectedDestination.city }}</p>
+        <p>{{ selectedDestination.publicTransport }}</p>
+      </section>
     </template>
+
     <section>
-      <h2>Ort</h2>
       <div class="map-outer-container">
         <div class="map-container" ref="map"></div>
       </div>
@@ -103,11 +110,18 @@ export default {
         const altText = this.selectedDestination.altText
         const destinationPrice = this.selectedDestination.price
         const indoorOutdoor = this.selectedDestination.category
+        const destinationAdress = this.selectedDestination.street
+        const destinationCity = this.selectedDestination.city
+        const destinationPubTransport = this.selectedDestination.publicTransport
+        const destinationSubtitle = this.selectedDestination.subtitle
 
         if (window.speechSynthesis.speak) {
           const output = new SpeechSynthesisUtterance(
             destinationName +
               ' ' +
+              destinationSubtitle +
+              '' +
+              'Das Erlebnis ist' +
               indoorOutdoor +
               ' ' +
               altText +
@@ -118,7 +132,15 @@ export default {
               OpeningTimes +
               ' ' +
               'Kosten' +
-              destinationPrice
+              ' ' +
+              destinationPrice +
+              ' ' +
+              'Anfahrt und Öffentliche Verkehrsmittel' +
+              destinationAdress +
+              ' ' +
+              destinationCity +
+              ' ' +
+              destinationPubTransport
           )
 
           output.lang = 'de-DE'
