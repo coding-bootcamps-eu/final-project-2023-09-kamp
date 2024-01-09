@@ -26,7 +26,10 @@
 
 <script>
 import { useMainStore } from '@/stores/mainStore.js'
+
+
 import NavBar from '@/components/NavBar.vue'
+
 
 export default {
   setup() {

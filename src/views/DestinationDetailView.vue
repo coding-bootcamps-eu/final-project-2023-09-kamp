@@ -46,9 +46,12 @@ export default {
       map: null
     }
   },
+
+
   components: {
     navbar: NavBar
   },
+
   async mounted() {
     this.map = L.map(this.$refs.map).setView([51.505, -0.09], 13)
 
