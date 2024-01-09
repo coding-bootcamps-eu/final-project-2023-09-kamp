@@ -1,5 +1,6 @@
 <template>
   <div>
+    <navbar />
     <h1>Ergebnisse</h1>
     <p>Klicke auf dein gewünschtes Erlebnis:</p>
     <ul v-if="filteredDestinations.length > 0">
@@ -26,15 +27,23 @@
 <script>
 import { useMainStore } from '@/stores/mainStore.js'
 
+
+import NavBar from '@/components/NavBar.vue'
+
+
 export default {
   setup() {
     const mainStore = useMainStore()
     return { mainStore }
   },
+
   data() {
     return {
       filteredDestinations: []
     }
+  },
+  components: {
+    navbar: NavBar
   },
   computed: {
     //Region aus MainStore laden

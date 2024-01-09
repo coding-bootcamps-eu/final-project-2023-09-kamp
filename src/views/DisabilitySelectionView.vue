@@ -1,5 +1,6 @@
 <template>
   <div>
+    <navbar />
     <h1>Zugänglichkeit</h1>
     <div class="choice-wrapper">
       <div
@@ -26,6 +27,7 @@
 import { useMainStore } from '@/stores/mainStore'
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import NavBar from '@/components/NavBar.vue'
 
 export default {
   setup() {
@@ -57,6 +59,9 @@ export default {
     }
 
     return { mainStore, toggleSelection, showResults }
+  },
+  components: {
+    navbar: NavBar
   }
 }
 </script>
