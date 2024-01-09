@@ -1,6 +1,7 @@
 <template>
   <div>
     <navbar />
+
     <h1>Ergebnisse</h1>
     <p>Klicke auf dein gewünschtes Erlebnis:</p>
     <ul v-if="filteredDestinations.length > 0">
@@ -11,7 +12,8 @@
         @click="selectDestination(destination.id)"
       >
         <router-link :to="`/detail/${destination.id}`">
-          <h2>{{ destination.name }}</h2>
+          <h2 class="destination-name">{{ destination.name }}</h2>
+          <small>{{ destination.subtitle }}</small>
           <figure class="img-figure">
             <img :src="getImgSrc(destination)" :alt="destination.altText" class="img" />
             <figcaption class="category">{{ destination.category }}</figcaption>
@@ -27,9 +29,7 @@
 <script>
 import { useMainStore } from '@/stores/mainStore.js'
 
-
 import NavBar from '@/components/NavBar.vue'
-
 
 export default {
   setup() {
@@ -118,6 +118,10 @@ export default {
 .destination-list {
   list-style-type: none;
   color: var(--text-color);
+}
+
+.destination-name {
+  text-decoration: none;
 }
 .img-figure {
   margin: 0;

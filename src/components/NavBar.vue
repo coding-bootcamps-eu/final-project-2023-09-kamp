@@ -1,7 +1,8 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link>
-    <button @click="goBack">Zurück</button>
+    <router-link to="/"><img src="/src/assets/svg/home.svg" />Home</router-link>
+
+    <button @click="goBack">Zurück <img src="/src/assets/svg/arrow_left.svg" /></button>
   </nav>
 </template>
 
