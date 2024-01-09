@@ -1,6 +1,9 @@
 <template>
   <div>
     <button @click="readPage">Seite vorlesen</button>
+
+    <navbar />
+
     <h1>{{ selectedDestination.name }}</h1>
     <div class="img-container">
       <img :src="getImgSrc(selectedDestination)" :alt="selectedDestination.altText" />
@@ -30,6 +33,7 @@
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { useMainStore } from '../stores/mainStore.js'
+import NavBar from '@/components/NavBar.vue'
 
 export default {
   setup() {
@@ -41,6 +45,9 @@ export default {
       selectedDestination: {},
       map: null
     }
+  },
+  components: {
+    navbar: NavBar
   },
   async mounted() {
     this.map = L.map(this.$refs.map).setView([51.505, -0.09], 13)

@@ -1,8 +1,9 @@
 <template>
   <div>
+    <navbar />
     <h1>Ergebnisse</h1>
-    <p>Klicke auf dein gewünschtes Ergebnis:</p>
-    <ul>
+    <p>Klicke auf dein gewünschtes Erlebnis:</p>
+    <ul v-if="filteredDestinations.length > 0">
       <li
         v-for="destination in filteredDestinations"
         :key="destination.id"
@@ -19,21 +20,27 @@
         <!-- :to={name: 'detail, params:{destination.id}} -->
       </li>
     </ul>
+    <p v-else>Leider gibt es für deine Suche keine passenden Erlebnisse.</p>
   </div>
 </template>
 
 <script>
 import { useMainStore } from '@/stores/mainStore.js'
+import NavBar from '@/components/NavBar.vue'
 
 export default {
   setup() {
     const mainStore = useMainStore()
     return { mainStore }
   },
+
   data() {
     return {
       filteredDestinations: []
     }
+  },
+  components: {
+    navbar: NavBar
   },
   computed: {
     //Region aus MainStore laden
