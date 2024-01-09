@@ -3,23 +3,24 @@
     <button @click="readPage">Seite vorlesen</button>
 
     <navbar />
-
-    <h1>{{ selectedDestination.name }}</h1>
-    <div class="img-container">
-      <img :src="getImgSrc(selectedDestination)" :alt="selectedDestination.altText" />
-    </div>
-    <p>
-      <small>{{ selectedDestination.category }}</small>
-    </p>
-    <p class="text-container">{{ selectedDestination.description }}</p>
-    <section>
-      <h2>Öffnungszeiten</h2>
-      <p>{{ selectedDestination.openingTime }} - {{ selectedDestination.closingTime }}</p>
-    </section>
-    <section>
-      <h2>Kosten</h2>
-      <p>{{ selectedDestination.price }}</p>
-    </section>
+    <template v-if="selectedDestination">
+      <h1>{{ selectedDestination.name }}</h1>
+      <div class="img-container">
+        <img :src="getImgSrc(selectedDestination)" :alt="selectedDestination.altText" />
+      </div>
+      <p>
+        <small>{{ selectedDestination.category }}</small>
+      </p>
+      <p class="text-container">{{ selectedDestination.description }}</p>
+      <section>
+        <h2>Öffnungszeiten</h2>
+        <p>{{ selectedDestination.openingTime }} - {{ selectedDestination.closingTime }}</p>
+      </section>
+      <section>
+        <h2>Kosten</h2>
+        <p>{{ selectedDestination.price }}</p>
+      </section>
+    </template>
     <section>
       <h2>Ort</h2>
       <div class="map-outer-container">
@@ -42,11 +43,10 @@ export default {
   },
   data() {
     return {
-      selectedDestination: {},
-      map: null
+      map: null,
+      selectedDestinationId: null
     }
   },
-
 
   components: {
     navbar: NavBar
@@ -80,14 +80,14 @@ export default {
     }
   },
   created() {
-    const selectedDestinationId = this.$route.params.id
+    this.selectedDestinationId = this.$route.params.id
     //selectedDestination definieren
-    if (selectedDestinationId) {
-      this.selectedDestination = this.mainStore.destinations.find(
-        (destination) => destination.id === selectedDestinationId //.find = durchsucht array nach passender ID
+  },
+  computed: {
+    selectedDestination() {
+      return this.mainStore.destinations.find(
+        (destination) => destination.id === this.selectedDestinationId
       )
-    } else {
-      console.error('Kein Erlebnis gefunden!')
     }
   },
   methods: {
