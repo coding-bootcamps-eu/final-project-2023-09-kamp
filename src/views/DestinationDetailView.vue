@@ -1,6 +1,9 @@
 <template>
   <div>
+    <button @click="readPage">Seite vorlesen</button>
+
     <navbar />
+
     <h1>{{ selectedDestination.name }}</h1>
     <div class="img-container">
       <img :src="getImgSrc(selectedDestination)" :alt="selectedDestination.altText" />
@@ -87,6 +90,43 @@ export default {
   methods: {
     getImgSrc(destination) {
       return `http://localhost:3333/${destination.imgSrc}`
+    },
+    readPage() {
+      if ('speechSynthesis' in window) {
+        const destinationName = this.selectedDestination.name
+        const OpeningTimes =
+          this.selectedDestination.openingTime + ' - ' + this.selectedDestination.closingTime
+        const destinationDescr = this.selectedDestination.description
+        const altText = this.selectedDestination.altText
+        const destinationPrice = this.selectedDestination.price
+        const indoorOutdoor = this.selectedDestination.category
+
+        if (window.speechSynthesis.speak) {
+          const output = new SpeechSynthesisUtterance(
+            destinationName +
+              ' ' +
+              indoorOutdoor +
+              ' ' +
+              altText +
+              ' ' +
+              destinationDescr +
+              ' ' +
+              'Öffnungszeiten' +
+              OpeningTimes +
+              ' ' +
+              'Kosten' +
+              destinationPrice
+          )
+
+          output.lang = 'de-DE'
+
+          window.speechSynthesis.speak(output)
+        } else {
+          console.error('Die SpeechSynthesisUtterance-Methode wird nicht unterstützt.')
+        }
+      } else {
+        console.error('Die Web Speech API wird in diesem Browser nicht unterstützt.')
+      }
     }
   }
 }
