@@ -153,7 +153,7 @@ export default {
     }).addTo(this.map)
 
     try {
-      const response = await fetch('http://localhost:3333/destinations')
+      const response = await fetch('https://23-september.kamp.api.cbe.uber.space/destinations')
       const data = await response.json()
 
       data.forEach((destination) => {
@@ -185,7 +185,7 @@ export default {
   },
   methods: {
     getImgSrc(destination) {
-      return `http://localhost:3333/${destination.imgSrc}`
+      return `https://23-september.kamp.api.cbe.uber.space/${destination.imgSrc}`
     },
     readPage() {
       if ('speechSynthesis' in window) {

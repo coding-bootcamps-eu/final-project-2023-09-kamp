@@ -59,7 +59,7 @@ export default {
   methods: {
     // funktion um img aus api zu laden
     getImgSrc(destination) {
-      return `http://localhost:3333/${destination.imgSrc}`
+      return `https://23-september.kamp.api.cbe.uber.space/${destination.imgSrc}`
     },
 
     filterDestinations() {
