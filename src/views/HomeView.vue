@@ -25,6 +25,8 @@
         <p>Wähle zuerst eine Region aus.</p>
       </div>
     </div>
+
+    <footer><router-link to="/impressum">Impressum</router-link></footer>
   </main>
 </template>
 
