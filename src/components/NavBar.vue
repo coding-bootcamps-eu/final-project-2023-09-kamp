@@ -4,7 +4,9 @@
       <img src="/src/assets/svg/arrow_left.svg" />
     </button>
 
-    <router-link to="/"><img src="/src/assets/svg/home.svg" class="nav-btn" /></router-link>
+    <router-link to="{ path: '/' }">
+      <img src="/src/assets/svg/home.svg" class="nav-btn" />
+    </router-link>
   </nav>
 </template>
 
@@ -12,7 +14,7 @@
 export default {
   methods: {
     goBack() {
-      window.history.back()
+      this.$router.go(-1)
     }
   }
 }
