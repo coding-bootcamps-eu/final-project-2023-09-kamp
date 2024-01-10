@@ -22,7 +22,9 @@
         <!-- :to={name: 'detail, params:{destination.id}} -->
       </li>
     </ul>
-    <p v-else>Leider gibt es für deine Suche keine passenden Erlebnisse.</p>
+    <p v-else class="no-destinations-text">
+      Leider gibt es für deine Suche keine passenden Erlebnisse.
+    </p>
   </div>
 </template>
 
@@ -120,7 +122,7 @@ export default {
 }
 .destination {
   list-style-type: none;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .destinations-detail-router-link {
@@ -151,6 +153,11 @@ export default {
   padding: 0.5rem 0.5rem;
   margin: 0;
   border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.no-destinations-text {
   font-size: 1rem;
   font-weight: 700;
 }
