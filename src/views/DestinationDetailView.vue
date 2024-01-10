@@ -19,24 +19,15 @@
           </div>
 
           <div class="carousel-item" data-bs-interval="3000">
-            <img
-              src="C:\Users\Anwender\.bootcampeu\abschlussprojekt\final-project-2023-09-kamp\src\assets\images\pexels-elevate-3009767_1.jpg"
-              class="w-100"
-            />
+            <img src="@/assets/images/pexels-elevate-3009767_1.jpg" class="w-100" />
           </div>
 
           <div class="carousel-item">
-            <img
-              src="C:\Users\Anwender\.bootcampeu\abschlussprojekt\final-project-2023-09-kamp\src\assets\images\pexels-elevate-3009746_2.jpg"
-              class="w-100"
-            />
+            <img src="@/assets/images/pexels-elevate-3009746_2.jpg" class="w-100" />
           </div>
 
           <div class="carousel-item">
-            <img
-              src="C:\Users\Anwender\.bootcampeu\abschlussprojekt\final-project-2023-09-kamp\src\assets\images\pexels-rdne-stock-project-7403005_4.jpg"
-              class="w-100"
-            />
+            <img src="@/assets/images/pexels-rdne-stock-project-7403005_4.jpg" class="w-100" />
           </div>
         </div>
 
@@ -74,7 +65,7 @@
 
           <button type="button" data-bs-target="#carouselSwitch" data-bs-slide-to="1">
             <img
-              src="C:\Users\Anwender\.bootcampeu\abschlussprojekt\final-project-2023-09-kamp\src\assets\images\pexels-elevate-3009767_1.jpg"
+              src="@/assets/images/pexels-elevate-3009767_1.jpg"
               alt="selectedDestination.altText"
               class="w-30"
             />
@@ -82,7 +73,7 @@
 
           <button type="button" data-bs-target="#carouselSwitch" data-bs-slide-to="2">
             <img
-              src="C:\Users\Anwender\.bootcampeu\abschlussprojekt\final-project-2023-09-kamp\src\assets\images\pexels-elevate-3009746_2.jpg"
+              src="@/assets/images/pexels-elevate-3009746_2.jpg"
               alt="selectedDestination.altText"
               class="w-30"
             />
@@ -90,7 +81,7 @@
 
           <button type="button" data-bs-target="#carouselSwitch" data-bs-slide-to="3">
             <img
-              src="C:\Users\Anwender\.bootcampeu\abschlussprojekt\final-project-2023-09-kamp\src\assets\images\pexels-rdne-stock-project-7403005_4.jpg"
+              src="@/assets/images/pexels-rdne-stock-project-7403005_4.jpg"
               alt="selectedDestination.altText"
               class="w-30"
             />
@@ -99,11 +90,11 @@
       </div>
       <!--img gallery--->
 
-      <p>
+      <figure>
         <figcaption class="category">
           <small>{{ selectedDestination.category }}</small>
         </figcaption>
-      </p>
+      </figure>
       <hr />
       <p class="text-container">{{ selectedDestination.description }}</p>
       <section>
