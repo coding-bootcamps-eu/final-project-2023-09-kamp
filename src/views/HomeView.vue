@@ -1,6 +1,7 @@
 <template>
   <main
     class="content"
+    :class="{ blur: showWarning }"
     :style="{ backgroundImage: 'url(https://i.imgur.com/xfx7DFh.jpg)' }"
     alt="Schönes Bergpanorama mit einem Pfad, der sich hinauf zu den Bergen schlängelt"
   >
@@ -21,7 +22,7 @@
     <div v-if="showWarning" :class="{ 'popup-warning': true, 'custom-background': true }">
       <div class="popup-inhalt">
         <span class="close" @click="closePopup"></span>
-        <h2>Hallo Entdecker!</h2>
+        <h3>Hallo Entdecker!</h3>
         <p>Wähle zuerst eine Region aus.</p>
       </div>
     </div>
@@ -46,9 +47,10 @@ export default {
         router.push('selection')
       } else {
         showWarning.value = true
+        document.body.classList.add('blur')
         setTimeout(() => {
           showWarning.value = false
-          debugger
+          document.body.classList.remove('blur')
         }, 2500)
         return
       }
@@ -128,7 +130,7 @@ export default {
   }
 
   .custom-background {
-    background-color: lightblue;
+    background-color: var(--infobox-color);
   }
   .popup-warning {
     position: fixed;
@@ -136,7 +138,7 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 10px;
-    box-shadow: 0 0 5px lightblue;
+    box-shadow: 0 0 5px var(--infobox-color);
     padding: 10px;
     max-width: 40%;
   }
