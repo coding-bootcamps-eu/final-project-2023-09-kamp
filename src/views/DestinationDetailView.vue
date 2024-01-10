@@ -123,6 +123,7 @@
         <p>{{ selectedDestination.city }}</p>
         <p>{{ selectedDestination.publicTransport }}</p>
       </section>
+      <hr />
     </template>
 
     <section>
