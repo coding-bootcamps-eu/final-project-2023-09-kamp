@@ -13,7 +13,7 @@ export const useMainStore = defineStore('mainStore', {
   },
   actions: {
     loadRegion() {
-      fetch('http://localhost:3333/regions')
+      fetch('https://23-september.kamp.api.cbe.uber.space/regions')
         .then((response) => response.json())
         .then((jsonData) => {
           this.regions = jsonData
@@ -21,7 +21,7 @@ export const useMainStore = defineStore('mainStore', {
     },
     async loadDestination() {
       try {
-        const response = await fetch('http://localhost:3333/destinations')
+        const response = await fetch('https://23-september.kamp.api.cbe.uber.space/destinations')
         const jsonData = await response.json()
         this.destinations = jsonData
       } catch (error) {
@@ -30,7 +30,7 @@ export const useMainStore = defineStore('mainStore', {
       }
     },
     loadDisability() {
-      fetch('http://localhost:3333/disabilities')
+      fetch('https://23-september.kamp.api.cbe.uber.space/disabilities')
         .then((response) => response.json())
         .then((jsonData) => {
           this.disabilities = jsonData
