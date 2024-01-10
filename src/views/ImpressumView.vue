@@ -2,13 +2,83 @@
   <div>
     <navbar />
     <div class="impressum-container">
-      <h2>Impressum</h2>
-      <p>KAMP</p>
-      <p>Musterstraße 123</p>
-      <p>12345 Musterstadt</p>
-      <p>Telefon: 01234 567890</p>
-      <p>E-Mail: info@kamp.de</p>
-      <p>Umsatzsteuer-ID: DE123456789</p>
+      <h2 class="page-title">Impressum</h2>
+      <h3 class="subheaders">Projekt KAMP</h3>
+      <p class="flowing-text">Diese Webapplikation wurde erstellt durch:</p>
+      <ul class="flowing-text">
+        <li><a href="https://github.com/czeopauli" class="github-links">Paulina</a></li>
+        <li><a href="https://github.com/marijana29" class="github-links">Marijana</a></li>
+        <li><a href="https://github.com/andreasullrich" class="github-links">Andreas</a></li>
+        <li><a href="https://github.com/kristinnorwig" class="github-links">Kristin</a></li>
+      </ul>
+      <h3 class="subheaders">Bildnachweise</h3>
+      <ul class="pic-sources">
+        <li>
+          Rollisegler: https://www.sta-g.de/mitgliedsschiff/wappen-von-ueckermuende-der-rollisegler/
+        </li>
+        <li>
+          Bayerwald Tierpark: https://travelwithkids.de/ausflugsziele/bayerwald-tierpark-lohberg/
+        </li>
+        <li>
+          Wandern am Breitenberg:
+          https://pixabay.com/de/photos/allg%C3%A4u-breitenberg-forggensee-50647/
+        </li>
+        <li>
+          Chinesischer Garten München:
+          https://www.platzl.de/muenchen-umgebung/sehenswuerdigkeiten/der-englische-garten-muenchen
+        </li>
+        <li>
+          Deutsches Museum Nürnberg:
+          https://www.google.com/maps/contrib/116725575969840519056/photos/@49.4538858,11.0747283,17z/data=!3m1!4b1!4m3!8m2!3m1!1e1?entry=ttu
+        </li>
+        <li>DeafVentures: https://pixabay.com/de/photos/mann-brett-ozean-kitesurfer-5656765/</li>
+        <li>Edersee: https://pixabay.com/de/photos/edersee-see-wasser-blau-fenster-928826/</li>
+        <li>
+          Insel Mainau: https://pixabay.com/de/photos/insel-mainau-blumen-mainau-insel-3729743/
+        </li>
+        <li>
+          Schirn Frankfurt: https://pixabay.com/de/photos/glaskuppel-frankfurt-museum-schirn-544106/
+        </li>
+        <li>
+          Wanderweg Bodensee:
+          https://pixabay.com/de/photos/natur-landschaft-segeln-segelboote-3729589/
+        </li>
+        <li>Planetarium Stuttgart: https://www.ad-magazin.de/article/planetarien</li>
+        <li>
+          Mercedes-Benz-Museum:
+          https://group.mercedes-benz.com/unternehmen/tradition/museen-historische-orte/mercedes-benz-museum.html
+        </li>
+        <li>
+          Neue Galerie Kassel:
+          https://www.reisen-fuer-alle.de/neue_galerie_kassel_249.html?action=detail&item_id=937
+        </li>
+        <li>
+          Botanischer Garten Frankfurt: https://www.palmengarten.de/de/gaerten/palmengarten.html
+        </li>
+        <li>
+          Bach Museum Leipzig: https://www.bachmuseumleipzig.de/de/bach-museum/ber-das-bach-museum
+        </li>
+        <li>
+          Albrechtsburg Meissen:
+          https://www.fotocommunity.de/photo/albrechtsburg-meissen-wittenberger-hobbyfotograf/46920516
+        </li>
+        <li>
+          Naturerlebnispfad Guttauer Teiche:
+          https://blog.synnatschke.de/europe/germany/unesco-biosphaerenreservat-guttauer-teiche/
+        </li>
+        <li>
+          Semperoper und Residenzschloss Dresden:
+          https://shop.skd.museum/kombiticket-residenzschloss-semperoper-01010000031.html
+        </li>
+        <li>
+          Erlebnisbad Wonnemar:
+          https://www.tripadvisor.de/Attraction_Review-g187365-d7075813-Reviews-WONNEMAR_Wismar-Wismar_Mecklenburg_West_Pomerania.html
+        </li>
+        <li>
+          Ozeanum Stralsund:
+          https://www.deutsches-meeresmuseum.de/presse/meldungen/post/sandtigerhai-niki-im-ozeaneum-stralsund-verstorben
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -28,4 +98,19 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.github-links {
+  color: var(--text-color);
+}
+
+.github-links:active {
+  color: var(--highlight-color);
+}
+.pic-sources {
+  font-size: 0.7rem;
+}
+
+li {
+  list-style-type: none;
+}
+</style>
