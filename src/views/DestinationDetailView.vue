@@ -6,23 +6,119 @@
     <template v-if="selectedDestination">
       <h1>{{ selectedDestination.name }}</h1>
       <small>{{ selectedDestination.subtitle }}</small>
-      <div class="img-container">
-        <img :src="getImgSrc(selectedDestination)" :alt="selectedDestination.altText" />
+
+      <!--img gallery--->
+      <div class="carousel slide" id="carouselSwitch" data-bs-wrap="true" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              :src="getImgSrc(selectedDestination)"
+              :alt="selectedDestination.altText"
+              class="w-100 big-pictures"
+            />
+          </div>
+
+          <div class="carousel-item" data-bs-interval="3000">
+            <img
+              src="C:\Users\Anwender\.bootcampeu\abschlussprojekt\final-project-2023-09-kamp\src\assets\images\pexels-elevate-3009767_1.jpg"
+              class="w-100"
+            />
+          </div>
+
+          <div class="carousel-item">
+            <img
+              src="C:\Users\Anwender\.bootcampeu\abschlussprojekt\final-project-2023-09-kamp\src\assets\images\pexels-elevate-3009746_2.jpg"
+              class="w-100"
+            />
+          </div>
+
+          <div class="carousel-item">
+            <img
+              src="C:\Users\Anwender\.bootcampeu\abschlussprojekt\final-project-2023-09-kamp\src\assets\images\pexels-rdne-stock-project-7403005_4.jpg"
+              class="w-100"
+            />
+          </div>
+        </div>
+
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselSwitch"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselSwitch"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon"></span>
+        </button>
+
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            class="active"
+            data-bs-target="#carouselSwitch"
+            data-bs-slide-to="0"
+          >
+            <img
+              :src="getImgSrc(selectedDestination)"
+              :alt="selectedDestination.altText"
+              class="w-30 start-img-gallery"
+            />
+          </button>
+
+          <button type="button" data-bs-target="#carouselSwitch" data-bs-slide-to="1">
+            <img
+              src="C:\Users\Anwender\.bootcampeu\abschlussprojekt\final-project-2023-09-kamp\src\assets\images\pexels-elevate-3009767_1.jpg"
+              alt="selectedDestination.altText"
+              class="w-30"
+            />
+          </button>
+
+          <button type="button" data-bs-target="#carouselSwitch" data-bs-slide-to="2">
+            <img
+              src="C:\Users\Anwender\.bootcampeu\abschlussprojekt\final-project-2023-09-kamp\src\assets\images\pexels-elevate-3009746_2.jpg"
+              alt="selectedDestination.altText"
+              class="w-30"
+            />
+          </button>
+
+          <button type="button" data-bs-target="#carouselSwitch" data-bs-slide-to="3">
+            <img
+              src="C:\Users\Anwender\.bootcampeu\abschlussprojekt\final-project-2023-09-kamp\src\assets\images\pexels-rdne-stock-project-7403005_4.jpg"
+              alt="selectedDestination.altText"
+              class="w-30"
+            />
+          </button>
+        </div>
       </div>
+      <!--img gallery--->
+
       <p>
-        <small>{{ selectedDestination.category }}</small>
+        <figcaption class="category">
+          <small>{{ selectedDestination.category }}</small>
+        </figcaption>
       </p>
+      <hr />
       <p class="text-container">{{ selectedDestination.description }}</p>
       <section>
-        <h2>Öffnungszeiten</h2>
+        <hr />
+        <h2>Öffnungszeiten:</h2>
         <p>{{ selectedDestination.openingTime }} - {{ selectedDestination.closingTime }} Uhr</p>
       </section>
+      <hr />
       <section>
-        <h2>Kosten</h2>
+        <h2>Kosten:</h2>
         <p>{{ selectedDestination.price }}</p>
       </section>
+      <hr />
       <section>
-        <h2>Anfahrt und ÖPNV</h2>
+        <h2>Anfahrt und ÖPNV:</h2>
         <p>{{ selectedDestination.street }}</p>
         <p>{{ selectedDestination.city }}</p>
         <p>{{ selectedDestination.publicTransport }}</p>
@@ -156,24 +252,80 @@ export default {
   }
 }
 </script>
+
 <style scoped>
-body {
-  margin: 50px;
+.category {
+  right: 1rem;
+  top: 1rem;
+  background-color: var(--btn-color);
+  color: var(--highlight-color);
+  padding: 0.5rem 0.5rem;
+  margin: 0;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  width: 23%;
+}
+.carousel-indicators img {
+  width: 6rem;
+  display: block;
+}
+.carousel-indicators button {
+  width: max-content !important;
+}
+.carousel-indicators {
+  position: unset;
+  height: 100px;
+  width: auto;
+  object-fit: cover;
+  gap: 0%;
 }
 
-.img-container {
-  display: flex;
-  justify-content: center;
+.carousel-item img {
+  height: 300px;
+  width: auto;
+  object-fit: cover;
 }
 
-.img-container img {
-  width: 100%;
-  border-radius: 10px;
+.carousel-control-prev,
+.carousel-control-next {
+  height: 20%;
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.788);
+  position: absolute;
+  top: 25%;
+  z-index: 1000;
+}
+
+.carousel-indicators img {
+  width: 95px;
+  height: 70px;
+}
+.carousel-control-prev {
+  left: 5px;
+}
+
+.carousel-control-next {
+  right: 5px;
+}
+
+.carousel-control-prev-icon {
+  width: 400px;
+  height: 100px;
+  opacity: 1;
+  filter: invert(100%);
+}
+.carousel-control-next-icon {
+  width: 400px;
+  height: 100px;
+  opacity: 1;
+  filter: invert(100%);
 }
 
 .text-container {
   text-align: justify;
   line-height: 150%;
+  background-color: rgba(65, 90, 55, 0.113);
 }
 
 .map-container {
@@ -188,10 +340,14 @@ body {
   margin-bottom: 20px;
 }
 
+hr {
+  margin-bottom: 7px;
+}
+
 @media (max-width: 800px) {
   .map-container {
     height: 15rem;
-    width: 100%;
+    width: 92%;
     border-radius: 10px;
   }
 
@@ -199,6 +355,18 @@ body {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 340px) {
+  .carousel-indicators {
+    position: unset;
+    height: 100px;
+    width: auto;
+    object-fit: cover;
+    gap: 0%;
+    flex-wrap: wrap;
+    visibility: hidden;
   }
 }
 </style>

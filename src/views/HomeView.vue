@@ -46,7 +46,6 @@ export default {
         showWarning.value = true
         setTimeout(() => {
           showWarning.value = false
-          debugger
         }, 2500)
         return
       }
