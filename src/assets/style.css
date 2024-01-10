@@ -3,10 +3,15 @@
 / font-weight 700 = Überschriften/
 / font-weight 900 = AppName*/
 
+* {
+  box-sizing: border-box;
+}
+
 :root {
   --text-color: #373b32;
   --btn-color: #606e51;
-  --background-color: #606e51a2;
+  --background-color: #5e6c50;
+  --background-transparency-color: #606e51a2;
   --highlight-color: #bcff75;
   --btn-text-color: white;
   --main-font: sans-serif;
@@ -14,4 +19,48 @@
 
 html {
   font-family: 'Montserrat', sans-serif;
+  font-size: 19px;
+  padding: 1rem;
+  color: var(--text-color);
+}
+
+.nav {
+  display: flex;
+  text-align: justify;
+  justify-content: space-between;
+}
+
+.nav-btn {
+  background-color: var(--background-color);
+  padding: 0.7rem 0.7rem;
+  border-radius: 0.5rem;
+  border: none;
+  height: 2.6rem;
+  width: 2.6rem;
+}
+
+/* Textfelder */
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 1rem;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.subheaders {
+  font-size: 1rem;
+  text-decoration: none;
+  font-weight: 700;
+  margin: 0;
+}
+
+.flowing-text {
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: left;
 }

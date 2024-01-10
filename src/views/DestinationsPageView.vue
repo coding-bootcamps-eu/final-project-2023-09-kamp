@@ -1,16 +1,19 @@
 <template>
   <div>
-    <h1>Ergebnisse</h1>
-    <p>Klicke auf dein gewünschtes Ergebnis:</p>
-    <ul>
+    <navbar />
+
+    <h1 class="page-title">Ergebnisse</h1>
+    <p class="flowing-text">Klicke auf dein gewünschtes Erlebnis:</p>
+    <ul v-if="filteredDestinations.length > 0" class="destination-list">
       <li
         v-for="destination in filteredDestinations"
         :key="destination.id"
-        class="destination-list"
+        class="destination"
         @click="selectDestination(destination.id)"
       >
-        <router-link :to="`/detail/${destination.id}`">
-          <h2>{{ destination.name }}</h2>
+        <router-link :to="`/detail/${destination.id}`" class="destinations-detail-router-link">
+          <h2 class="subheaders">{{ destination.name }}</h2>
+          <small class="subtitle">{{ destination.subtitle }}</small>
           <figure class="img-figure">
             <img :src="getImgSrc(destination)" :alt="destination.altText" class="img" />
             <figcaption class="category">{{ destination.category }}</figcaption>
@@ -19,21 +22,28 @@
         <!-- :to={name: 'detail, params:{destination.id}} -->
       </li>
     </ul>
+    <p v-else>Leider gibt es für deine Suche keine passenden Erlebnisse.</p>
   </div>
 </template>
 
 <script>
 import { useMainStore } from '@/stores/mainStore.js'
 
+import NavBar from '@/components/NavBar.vue'
+
 export default {
   setup() {
     const mainStore = useMainStore()
     return { mainStore }
   },
+
   data() {
     return {
       filteredDestinations: []
     }
+  },
+  components: {
+    navbar: NavBar
   },
   computed: {
     //Region aus MainStore laden
@@ -106,9 +116,18 @@ export default {
 
 <style scoped>
 .destination-list {
+  padding: 0;
+}
+.destination {
   list-style-type: none;
+  margin-bottom: 2rem;
+}
+
+.destinations-detail-router-link {
+  text-decoration: none;
   color: var(--text-color);
 }
+
 .img-figure {
   margin: 0;
   position: relative;
@@ -117,14 +136,15 @@ export default {
 
 .img {
   width: 100%;
-  height: 20rem;
+  height: 12rem;
   object-fit: cover;
   border-radius: 1rem;
+  margin-top: 0.5rem;
 }
 
 .category {
   position: absolute;
-  right: 1rem;
+  right: 0.5rem;
   top: 1rem;
   background-color: var(--btn-color);
   color: var(--highlight-color);
@@ -133,22 +153,5 @@ export default {
   border-radius: 0.5rem;
   font-size: 1rem;
   font-weight: 700;
-}
-
-.btn-to-detail {
-  background-color: var(--btn-color);
-  color: var(--btn-text-color);
-  padding: 0.5rem 0.5rem;
-  margin-top: 1rem;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  font-weight: 500;
-  border: 0.2rem solid var(--btn-color);
-  text-decoration: none;
-}
-
-.btn-to-detail:focus:active {
-  border: 0.2rem solid var(--highlight-color);
-  outline: none;
 }
 </style>
