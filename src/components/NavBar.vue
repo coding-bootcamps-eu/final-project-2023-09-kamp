@@ -4,7 +4,7 @@
       <img src="/src/assets/svg/arrow_left.svg" />
     </button>
 
-    <router-link to="{ path: '/' }">
+    <router-link to="/">
       <img src="/src/assets/svg/home.svg" class="nav-btn" />
     </router-link>
   </nav>
