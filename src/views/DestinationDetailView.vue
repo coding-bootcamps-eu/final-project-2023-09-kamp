@@ -123,7 +123,6 @@
         <p>{{ selectedDestination.city }}</p>
         <p>{{ selectedDestination.publicTransport }}</p>
       </section>
-      <hr />
     </template>
 
     <section>
@@ -359,7 +358,7 @@ hr {
   }
 }
 
-@media (max-width: 340px) {
+@media (max-width: 339px) {
   .carousel-indicators {
     position: unset;
     height: 100px;
