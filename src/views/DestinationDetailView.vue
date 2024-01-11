@@ -1,8 +1,7 @@
 <template>
   <div>
-    <button @click="readPage">Seite vorlesen</button>
-
     <navbar />
+    <button class="readPageBtn" @click="readPage">Seite vorlesen</button>
     <template v-if="selectedDestination">
       <h1>{{ selectedDestination.name }}</h1>
       <small>{{ selectedDestination.subtitle }}</small>
@@ -244,6 +243,18 @@ export default {
 </script>
 
 <style scoped>
+.readPageBtn {
+  all: unset;
+  border-radius: 0.5rem;
+  background-color: var(--btn-color, #606e51);
+  padding: 4px;
+  margin-top: 20px;
+  color: white;
+  width: 98%;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
 .category {
   right: 1rem;
   top: 1rem;
@@ -269,6 +280,7 @@ export default {
   width: auto;
   object-fit: cover;
   gap: 0%;
+  margin-bottom: 0px;
 }
 
 .carousel-item img {
@@ -288,15 +300,15 @@ export default {
 }
 
 .carousel-indicators img {
-  width: 95px;
+  width: 93px;
   height: 70px;
 }
 .carousel-control-prev {
-  left: 5px;
+  left: 3px;
 }
 
 .carousel-control-next {
-  right: 5px;
+  right: 3px;
 }
 
 .carousel-control-prev-icon {
@@ -337,7 +349,7 @@ hr {
 @media (max-width: 800px) {
   .map-container {
     height: 15rem;
-    width: 92%;
+    width: 100%;
     border-radius: 10px;
   }
 
