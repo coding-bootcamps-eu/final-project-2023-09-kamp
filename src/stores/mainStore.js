@@ -8,7 +8,8 @@ export const useMainStore = defineStore('mainStore', {
       disabilities: [],
       selectedDisabilitiesId: [],
       destinations: [],
-      selectedDestinationId: null
+      selectedDestinationId: null,
+      isHighContrastMode: false
     }
   },
   actions: {
@@ -44,6 +45,21 @@ export const useMainStore = defineStore('mainStore', {
     },
     setSelectedDestination(destinationId) {
       this.selectedDestinationId = destinationId
+    },
+    loadHighContrastMode() {
+      // Check if high contrast mode preference is stored in localStorage
+      const storedHighContrastMode = localStorage.getItem('highContrastMode')
+
+      // If the preference is stored, update the store accordingly
+      if (storedHighContrastMode !== null) {
+        this.isHighContrastMode = JSON.parse(storedHighContrastMode)
+      }
+    },
+
+    toggleHighContrastMode() {
+      this.isHighContrastMode = !this.isHighContrastMode
+      // Update localStorage to store the preference
+      localStorage.setItem('highContrastMode', JSON.stringify(this.isHighContrastMode))
     }
   }
 })
