@@ -11,6 +11,7 @@
         <li>
           <img src="/src/assets/svg/github-mark.svg" class="github-icon" /><a
             href="https://github.com/czeopauli"
+            target=" _blank"
             class="github-links"
             >Paulina</a
           >
@@ -18,6 +19,7 @@
         <li>
           <img src="/src/assets/svg/github-mark.svg" class="github-icon" /><a
             href="https://github.com/marijana29"
+            target=" _blank"
             class="github-links"
             >Marijana</a
           >
@@ -25,6 +27,7 @@
         <li>
           <img src="/src/assets/svg/github-mark.svg" class="github-icon" /><a
             href="https://github.com/andreasullrich"
+            target=" _blank"
             class="github-links"
             >Andreas</a
           >
@@ -32,6 +35,7 @@
         <li>
           <img src="/src/assets/svg/github-mark.svg" class="github-icon" /><a
             href="https://github.com/kristinnorwig"
+            target=" _blank"
             class="github-links"
             >Kristin</a
           >
