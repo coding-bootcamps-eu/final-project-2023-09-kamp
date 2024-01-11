@@ -21,7 +21,7 @@
 html {
   font-family: 'Montserrat', sans-serif;
   font-size: 19px;
-  padding: 1rem;
+  padding: 0.5rem;
   color: var(--text-color);
 }
 
@@ -29,6 +29,8 @@ html {
   display: flex;
   justify-content: space-between;
 }
+
+/*Buttons*/
 
 .nav-btn {
   background-color: var(--background-color);
@@ -42,16 +44,33 @@ html {
   align-items: center;
 }
 
+.btn-start {
+  background-color: var(--background-color);
+  padding: 0.7rem 0.7rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--btn-text-color);
+  width: 100%;
+}
 /* Textfelder */
 
 .app-name {
   font-size: 3.7rem;
   font-weight: 900;
+  color: var(--highlight-color);
 }
 
 .page-title {
+  margin-top: 1rem;
   font-size: 1.5rem;
   font-weight: 700;
+  margin-top: 1rem;
 }
 
 .subtitle {
@@ -71,4 +90,8 @@ html {
   font-size: 1rem;
   font-weight: 500;
   text-align: left;
+}
+
+.link {
+  color: var(--highlight-color);
 }
