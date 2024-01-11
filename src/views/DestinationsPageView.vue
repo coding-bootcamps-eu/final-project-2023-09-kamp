@@ -1,30 +1,32 @@
 <template>
   <div>
-    <navbar />
+    <div :class="{ 'high-contrast-mode': mainStore.isHighContrastMode }">
+      <navbar />
 
-    <h1 class="page-title">Ergebnisse</h1>
-    <p class="flowing-text">Klicke auf dein gewünschtes Erlebnis:</p>
-    <ul v-if="filteredDestinations.length > 0" class="destination-list">
-      <li
-        v-for="destination in filteredDestinations"
-        :key="destination.id"
-        class="destination"
-        @click="selectDestination(destination.id)"
-      >
-        <router-link :to="`/detail/${destination.id}`" class="destinations-detail-router-link">
-          <h2 class="subheaders">{{ destination.name }}</h2>
-          <small class="subtitle">{{ destination.subtitle }}</small>
-          <figure class="img-figure">
-            <img :src="getImgSrc(destination)" :alt="destination.altText" class="img" />
-            <figcaption class="category">{{ destination.category }}</figcaption>
-          </figure>
-        </router-link>
-        <!-- :to={name: 'detail, params:{destination.id}} -->
-      </li>
-    </ul>
-    <p v-else class="no-destinations-text">
-      Leider gibt es für deine Suche keine passenden Erlebnisse.
-    </p>
+      <h1 class="page-title">Ergebnisse</h1>
+      <p class="flowing-text">Klicke auf dein gewünschtes Erlebnis:</p>
+      <ul v-if="filteredDestinations.length > 0" class="destination-list">
+        <li
+          v-for="destination in filteredDestinations"
+          :key="destination.id"
+          class="destination"
+          @click="selectDestination(destination.id)"
+        >
+          <router-link :to="`/detail/${destination.id}`" class="destinations-detail-router-link">
+            <h2 class="subheaders">{{ destination.name }}</h2>
+            <small class="subtitle">{{ destination.subtitle }}</small>
+            <figure class="img-figure">
+              <img :src="getImgSrc(destination)" :alt="destination.altText" class="img" />
+              <figcaption class="category">{{ destination.category }}</figcaption>
+            </figure>
+          </router-link>
+          <!-- :to={name: 'detail, params:{destination.id}} -->
+        </li>
+      </ul>
+      <p v-else class="no-destinations-text">
+        Leider gibt es für deine Suche keine passenden Erlebnisse.
+      </p>
+    </div>
   </div>
 </template>
 
@@ -160,5 +162,14 @@ export default {
 .no-destinations-text {
   font-size: 1rem;
   font-weight: 700;
+}
+
+.high-contrast-mode {
+  background-color: black;
+  color: white;
+}
+
+.high-contrast-mode h1 {
+  color: white;
 }
 </style>
