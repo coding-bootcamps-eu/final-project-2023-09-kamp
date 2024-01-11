@@ -114,7 +114,7 @@ export default {
     background-color: var(--background-color);
     color: var(--btn-text-color);
     padding: 0.7rem 0.7rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     margin-top: 5rem;
     border-radius: 0.5rem;
     border: none;
@@ -127,7 +127,7 @@ export default {
 
   .btn-start {
     background-color: var(--background-color);
-    padding: 0.4rem 0.4rem;
+    padding: 0.7rem 0.7rem;
     border-radius: 0.5rem;
     border: none;
     font-size: 0.7rem;

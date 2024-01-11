@@ -4,9 +4,14 @@
     <div class="impressum-container">
       <h2 class="page-title">Impressum</h2>
       <h3 class="subheaders">Projekt KAMP</h3>
-      <p class="flowing-text">Ein Prototyp für eine Reiseführer-App für barrierefreies Reisen</p>
+      <p class="flowing-text">
+        Ein Prototyp für eine Reiseführer-App<br />für barrierefreies Reisen
+      </p>
 
-      <p class="flowing-text">Diese Webapplikation wurde erstellt durch:</p>
+      <p class="flowing-text">
+        Diese Webapplikation wurde<br />
+        erstellt durch:
+      </p>
       <ul class="flowing-text">
         <li>
           <img src="/src/assets/svg/github-mark.svg" class="github-icon" /><a
@@ -42,91 +47,175 @@
         </li>
       </ul>
       <h3 class="subheaders">Bildnachweise</h3>
-      <ul class="pic-sources">
+      <ul>
         <li>
-          Rollisegler: https://www.sta-g.de/mitgliedsschiff/wappen-von-ueckermuende-der-rollisegler/
+          <a
+            href="https://www.sta-g.de/mitgliedsschiff/wappen-von-ueckermuende-der-rollisegler/"
+            target="_blank"
+            >Rollisegler</a
+          >
         </li>
         <li>
-          Bayerwald Tierpark: https://travelwithkids.de/ausflugsziele/bayerwald-tierpark-lohberg/
+          <a
+            href="https://travelwithkids.de/ausflugsziele/bayerwald-tierpark-lohberg/"
+            target="_blank"
+            >Bayerwald Tierpark</a
+          >
         </li>
         <li>
-          Wandern am Breitenberg:
-          https://pixabay.com/de/photos/allg%C3%A4u-breitenberg-forggensee-50647/
+          <a
+            href="https://pixabay.com/de/photos/allg%C3%A4u-breitenberg-forggensee-50647/"
+            target="_blank"
+            >Wandern am Breitenberg</a
+          >
         </li>
         <li>
-          Chinesischer Garten München:
-          https://www.platzl.de/muenchen-umgebung/sehenswuerdigkeiten/der-englische-garten-muenchen
+          <a
+            href="https://www.platzl.de/muenchen-umgebung/sehenswuerdigkeiten/der-englische-garten-muenchen"
+            target="_blank"
+            >Chinesischer Garten München</a
+          >
         </li>
         <li>
-          Deutsches Museum Nürnberg:
-          https://www.google.com/maps/contrib/116725575969840519056/photos/@49.4538858,11.0747283,17z/data=!3m1!4b1!4m3!8m2!3m1!1e1?entry=ttu
-        </li>
-        <li>DeafVentures: https://pixabay.com/de/photos/mann-brett-ozean-kitesurfer-5656765/</li>
-        <li>Edersee: https://pixabay.com/de/photos/edersee-see-wasser-blau-fenster-928826/</li>
-        <li>
-          Insel Mainau: https://pixabay.com/de/photos/insel-mainau-blumen-mainau-insel-3729743/
+          <a
+            href="https://www.google.com/maps/contrib/116725575969840519056/photos/@49.4538858,11.0747283,17z/data=!3m1!4b1!4m3!8m2!3m1!1e1?entry=ttu"
+            target="_blank"
+            >Deutsches Museum Nürnberg</a
+          >
         </li>
         <li>
-          Schirn Frankfurt: https://pixabay.com/de/photos/glaskuppel-frankfurt-museum-schirn-544106/
+          <a
+            href="https://pixabay.com/de/photos/mann-brett-ozean-kitesurfer-5656765/"
+            target="_blank"
+            >DeafVentures</a
+          >
         </li>
         <li>
-          Wanderweg Bodensee:
-          https://pixabay.com/de/photos/natur-landschaft-segeln-segelboote-3729589/
-        </li>
-        <li>Planetarium Stuttgart: https://www.ad-magazin.de/article/planetarien</li>
-        <li>
-          Mercedes-Benz-Museum:
-          https://group.mercedes-benz.com/unternehmen/tradition/museen-historische-orte/mercedes-benz-museum.html
+          <a
+            href="https://pixabay.com/de/photos/edersee-see-wasser-blau-fenster-928826/"
+            target="_blank"
+            >Edersee</a
+          >
         </li>
         <li>
-          Neue Galerie Kassel:
-          https://www.reisen-fuer-alle.de/neue_galerie_kassel_249.html?action=detail&item_id=937
+          <a
+            href="https://pixabay.com/de/photos/insel-mainau-blumen-mainau-insel-3729743/"
+            target="_blank"
+            >Insel Mainau</a
+          >
         </li>
         <li>
-          Botanischer Garten Frankfurt: https://www.palmengarten.de/de/gaerten/palmengarten.html
+          <a
+            href="https://pixabay.com/de/photos/glaskuppel-frankfurt-museum-schirn-544106/"
+            target="_blank"
+            >Schirn Frankfurt</a
+          >
         </li>
         <li>
-          Bach Museum Leipzig: https://www.bachmuseumleipzig.de/de/bach-museum/ber-das-bach-museum
+          <a
+            href="https://pixabay.com/de/photos/natur-landschaft-segeln-segelboote-3729589/"
+            target="_blank"
+            >Wanderweg Bodensee</a
+          >
         </li>
         <li>
-          Albrechtsburg Meissen:
-          https://www.fotocommunity.de/photo/albrechtsburg-meissen-wittenberger-hobbyfotograf/46920516
+          <a href="https://www.ad-magazin.de/article/planetarien" target="_blank"
+            >Planetarium Stuttgart</a
+          >
         </li>
         <li>
-          Naturerlebnispfad Guttauer Teiche:
-          https://blog.synnatschke.de/europe/germany/unesco-biosphaerenreservat-guttauer-teiche/
+          <a
+            href="https://group.mercedes-benz.com/unternehmen/tradition/museen-historische-orte/mercedes-benz-museum.html"
+            target="_blank"
+            >Mercedes-Benz-Museum</a
+          >
         </li>
         <li>
-          Semperoper und Residenzschloss Dresden:
-          https://shop.skd.museum/kombiticket-residenzschloss-semperoper-01010000031.html
+          <a
+            href="https://www.reisen-fuer-alle.de/neue_galerie_kassel_249.html?action=detail&item_id=937"
+            target="_blank"
+            >Neue Galerie Kassel</a
+          >
         </li>
         <li>
-          Erlebnisbad Wonnemar:
-          https://www.tripadvisor.de/Attraction_Review-g187365-d7075813-Reviews-WONNEMAR_Wismar-Wismar_Mecklenburg_West_Pomerania.html
+          <a href="https://www.palmengarten.de/de/gaerten/palmengarten.html" target="_blank"
+            >Botanischer Garten Frankfurt</a
+          >
         </li>
         <li>
-          Ozeanum Stralsund:
-          https://www.deutsches-meeresmuseum.de/presse/meldungen/post/sandtigerhai-niki-im-ozeaneum-stralsund-verstorben
-        </li>
-        <li>github Logo: https://github.com/logos</li>
-        <li>
-          Leute Saßen Um Einen Tisch Und Tranken Bier:
-          https://www.pexels.com/de-de/foto/leute-sassen-um-einen-tisch-und-tranken-bier-3009767/
+          <a
+            href="https://www.bachmuseumleipzig.de/de/bach-museum/ber-das-bach-museum"
+            target="_blank"
+            >Bach Museum Leipzig</a
+          >
         </li>
         <li>
-          Menschen, Die Während Ihrer Reitpause Einen Toast Haben:
-          https://www.pexels.com/de-de/foto/menschen-die-wahrend-ihrer-reitpause-einen-toast-haben-3009746/
+          <a
+            href="https://www.fotocommunity.de/photo/albrechtsburg-meissen-wittenberger-hobbyfotograf/46920516"
+            target="_blank"
+            >Albrechtsburg Meissen</a
+          >
         </li>
         <li>
-          Tochter, Mutter essen ein Eis:
-          https://www.pexels.com/de-de/foto/liebe-essen-dessert-glucklich-7403005/
+          <a
+            href="https://blog.synnatschke.de/europe/germany/unesco-biosphaerenreservat-guttauer-teiche/"
+            target="_blank"
+            >Naturerlebnispfad Guttauer Teiche</a
+          >
         </li>
         <li>
-          Mann, Der Auf Grünem Gras Steht:
-          https://www.pexels.com/de-de/foto/mann-der-auf-grunem-gras-steht-16010/
+          <a
+            href="https://shop.skd.museum/kombiticket-residenzschloss-semperoper-01010000031.html"
+            target="_blank"
+            >Semperoper und Residenzschloss Dresden</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.tripadvisor.de/Attraction_Review-g187365-d7075813-Reviews-WONNEMAR_Wismar-Wismar_Mecklenburg_West_Pomerania.html"
+            target="_blank"
+            >Erlebnisbad Wonnemar</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.deutsches-meeresmuseum.de/presse/meldungen/post/sandtigerhai-niki-im-ozeaneum-stralsund-verstorben"
+            target="_blank"
+            >Ozeanum Stralsund</a
+          >
+        </li>
+        <li><a href="https://github.com/logos" target="_blank">github Logo</a></li>
+        <li>
+          <a
+            href="https://www.pexels.com/de-de/foto/leute-sassen-um-einen-tisch-und-tranken-bier-3009767/"
+            target="_blank"
+            >Leute Saßen Um Einen Tisch Und Tranken Bier</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.pexels.com/de-de/foto/menschen-die-wahrend-ihrer-reitpause-einen-toast-haben-3009746/"
+            target="_blank"
+            >Menschen, Die Während Ihrer Reitpause Einen Toast Haben</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.pexels.com/de-de/foto/liebe-essen-dessert-glucklich-7403005/"
+            target="_blank"
+            >Tochter, Mutter essen ein Eis</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.pexels.com/de-de/foto/mann-der-auf-grunem-gras-steht-16010/"
+            target="_blank"
+            >Mann, Der Auf Grünem Gras Steht</a
+          >
         </li>
       </ul>
     </div>
+    <div class="footer"></div>
   </div>
 </template>
 
@@ -144,8 +233,17 @@ export default {
   }
 }
 </script>
+export default {
 
 <style scoped>
+.page-title {
+  margin-bottom: 1rem;
+}
+
+.subheaders {
+  margin-bottom: 0.6rem;
+  margin-top: 0.6rem;
+}
 li {
   display: flex;
   align-items: center;
@@ -161,9 +259,10 @@ li {
   color: var(--text-color);
 }
 
-.github-links:active {
-  color: var(--highlight-color);
+.subheaders + ul a {
+  color: var(--text-color);
 }
+
 .pic-sources {
   font-size: 0.7rem;
 }
