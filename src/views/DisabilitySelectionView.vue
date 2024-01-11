@@ -1,25 +1,27 @@
 <template>
   <div>
-    <navbar />
-    <h1 class="page-title">Zugänglichkeit</h1>
-    <p>Wähle deinen Reiseweg:</p>
-    <div class="choice-wrapper">
-      <div
-        class="disability-option"
-        v-for="disability in mainStore.disabilities"
-        :key="disability.id"
-        @click="toggleSelection(disability.id)"
-      >
+    <div :class="{ 'high-contrast-mode': mainStore.isHighContrastMode }">
+      <navbar />
+      <h1 class="page-title">Zugänglichkeit</h1>
+      <p>Wähle deinen Reiseweg:</p>
+      <div class="choice-wrapper">
         <div
-          class="disability-rectangle"
-          :class="{ selected: mainStore.selectedDisabilitiesId.includes(disability.id) }"
+          class="disability-option"
+          v-for="disability in mainStore.disabilities"
+          :key="disability.id"
+          @click="toggleSelection(disability.id)"
         >
-          {{ disability.name }}
+          <div
+            class="disability-rectangle"
+            :class="{ selected: mainStore.selectedDisabilitiesId.includes(disability.id) }"
+          >
+            {{ disability.name }}
+          </div>
         </div>
       </div>
-    </div>
-    <div class="button-container">
-      <button @click="showResults">Ergebnisse anzeigen</button>
+      <div class="button-container">
+        <button @click="showResults">Ergebnisse anzeigen</button>
+      </div>
     </div>
   </div>
 </template>
@@ -37,6 +39,7 @@ export default {
 
     onMounted(() => {
       mainStore.loadDisability()
+      mainStore.loadHighContrastMode()
     })
 
     const toggleSelection = (disabilityId) => {
@@ -83,7 +86,7 @@ export default {
   cursor: pointer;
   user-select: none;
   background-color: var(--background-color);
-  color: var(--text-color);
+  color: white;
 }
 
 .choice-wrapper {
@@ -116,5 +119,13 @@ button {
 .selected {
   background-color: var(--highlight-color);
   color: var(--text-color);
+}
+.high-contrast-mode {
+  background-color: black;
+  color: white;
+}
+.high-contrast-mode button {
+  background-color: white;
+  color: black;
 }
 </style>

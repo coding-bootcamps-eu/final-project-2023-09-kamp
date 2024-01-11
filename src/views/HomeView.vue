@@ -1,7 +1,10 @@
 <template>
   <main
     class="content"
-    :class="{ blur: showWarning }"
+    :class="{
+      blur: showWarning,
+      'high-contrast-mode': MainStore.isHighContrastMode
+    }"
     :style="{ backgroundImage: 'url(https://i.imgur.com/xfx7DFh.jpg)' }"
     alt="Schönes Bergpanorama mit einem Pfad, der sich hinauf zu den Bergen schlängelt"
   >
@@ -22,6 +25,9 @@
       <button @click="startAdventure" class="btn-start">
         <p>Los Geht's!</p>
         <img src="/src/assets/svg/arrow_right.svg" />
+      </button>
+      <button @click="toggleHighContrastMode" class="high-contrast-toggle">
+        {{ MainStore.isHighContrastMode ? ' Hoher Kontrast aus' : ' Hoher Kontrast ein' }}
       </button>
     </div>
     <div v-if="showWarning" :class="{ 'popup-warning': true, 'custom-background': true }">
@@ -46,6 +52,7 @@ export default {
     const MainStore = useMainStore()
     const router = useRouter()
     const showWarning = ref(false)
+    const isHighContrastMode = false
 
     const startAdventure = () => {
       if (MainStore.selectedRegionId || MainStore.selectedRegionId === 0) {
@@ -61,9 +68,13 @@ export default {
       router.push('selection')
     }
 
+    const toggleHighContrastMode = () => {
+      MainStore.toggleHighContrastMode()
+    }
+
     MainStore.loadRegion()
 
-    return { MainStore, startAdventure, showWarning }
+    return { MainStore, startAdventure, showWarning, isHighContrastMode, toggleHighContrastMode }
   }
 }
 </script>
@@ -182,6 +193,22 @@ export default {
   .impressum a {
     color: var(--highlight-color);
     font-weight: 500;
+  }
+
+  .high-contrast-toggle {
+    background-color: var(--hc-btn-color);
+    color: var(--btn-text-color);
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: var(--main-font);
+    margin-top: 10px;
+  }
+
+  .high-contrast-mode .header {
+    background-color: var(--hc-background-color);
   }
 }
 </style>

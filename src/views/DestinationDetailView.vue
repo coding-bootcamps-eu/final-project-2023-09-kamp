@@ -1,126 +1,128 @@
 <template>
   <div>
-    <navbar />
-    <button class="readPageBtn" @click="readPage">Seite vorlesen</button>
-    <template v-if="selectedDestination">
-      <h1>{{ selectedDestination.name }}</h1>
-      <small>{{ selectedDestination.subtitle }}</small>
+    <div :class="{ 'high-contrast-mode': mainStore.isHighContrastMode }">
+      <navbar />
+      <button class="readPageBtn" @click="readPage">Seite vorlesen</button>
+      <template v-if="selectedDestination">
+        <h1>{{ selectedDestination.name }}</h1>
+        <small>{{ selectedDestination.subtitle }}</small>
 
-      <!--img gallery--->
-      <div class="carousel slide" id="carouselSwitch" data-bs-wrap="true" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img
-              :src="getImgSrc(selectedDestination)"
-              :alt="selectedDestination.altText"
-              class="w-100 big-pictures"
-            />
+        <!--img gallery--->
+        <div class="carousel slide" id="carouselSwitch" data-bs-wrap="true" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                :src="getImgSrc(selectedDestination)"
+                :alt="selectedDestination.altText"
+                class="w-100 big-pictures"
+              />
+            </div>
+
+            <div class="carousel-item" data-bs-interval="3000">
+              <img src="@/assets/images/pexels-elevate-3009767_1.jpg" class="w-100" />
+            </div>
+
+            <div class="carousel-item">
+              <img src="@/assets/images/pexels-elevate-3009746_2.jpg" class="w-100" />
+            </div>
+
+            <div class="carousel-item">
+              <img src="@/assets/images/pexels-rdne-stock-project-7403005_4.jpg" class="w-100" />
+            </div>
           </div>
 
-          <div class="carousel-item" data-bs-interval="3000">
-            <img src="@/assets/images/pexels-elevate-3009767_1.jpg" class="w-100" />
-          </div>
-
-          <div class="carousel-item">
-            <img src="@/assets/images/pexels-elevate-3009746_2.jpg" class="w-100" />
-          </div>
-
-          <div class="carousel-item">
-            <img src="@/assets/images/pexels-rdne-stock-project-7403005_4.jpg" class="w-100" />
-          </div>
-        </div>
-
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselSwitch"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon"></span>
-        </button>
-
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselSwitch"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon"></span>
-        </button>
-
-        <div class="carousel-indicators">
           <button
+            class="carousel-control-prev"
             type="button"
-            class="active"
             data-bs-target="#carouselSwitch"
-            data-bs-slide-to="0"
+            data-bs-slide="prev"
           >
-            <img
-              :src="getImgSrc(selectedDestination)"
-              :alt="selectedDestination.altText"
-              class="w-30 start-img-gallery"
-            />
+            <span class="carousel-control-prev-icon"></span>
           </button>
 
-          <button type="button" data-bs-target="#carouselSwitch" data-bs-slide-to="1">
-            <img
-              src="@/assets/images/pexels-elevate-3009767_1.jpg"
-              alt="selectedDestination.altText"
-              class="w-30"
-            />
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselSwitch"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon"></span>
           </button>
 
-          <button type="button" data-bs-target="#carouselSwitch" data-bs-slide-to="2">
-            <img
-              src="@/assets/images/pexels-elevate-3009746_2.jpg"
-              alt="selectedDestination.altText"
-              class="w-30"
-            />
-          </button>
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              class="active"
+              data-bs-target="#carouselSwitch"
+              data-bs-slide-to="0"
+            >
+              <img
+                :src="getImgSrc(selectedDestination)"
+                :alt="selectedDestination.altText"
+                class="w-30 start-img-gallery"
+              />
+            </button>
 
-          <button type="button" data-bs-target="#carouselSwitch" data-bs-slide-to="3">
-            <img
-              src="@/assets/images/pexels-rdne-stock-project-7403005_4.jpg"
-              alt="selectedDestination.altText"
-              class="w-30"
-            />
-          </button>
+            <button type="button" data-bs-target="#carouselSwitch" data-bs-slide-to="1">
+              <img
+                src="@/assets/images/pexels-elevate-3009767_1.jpg"
+                alt="selectedDestination.altText"
+                class="w-30"
+              />
+            </button>
+
+            <button type="button" data-bs-target="#carouselSwitch" data-bs-slide-to="2">
+              <img
+                src="@/assets/images/pexels-elevate-3009746_2.jpg"
+                alt="selectedDestination.altText"
+                class="w-30"
+              />
+            </button>
+
+            <button type="button" data-bs-target="#carouselSwitch" data-bs-slide-to="3">
+              <img
+                src="@/assets/images/pexels-rdne-stock-project-7403005_4.jpg"
+                alt="selectedDestination.altText"
+                class="w-30"
+              />
+            </button>
+          </div>
         </div>
-      </div>
-      <!--img gallery--->
+        <!--img gallery--->
 
-      <figure>
-        <figcaption class="category">
-          <small>{{ selectedDestination.category }}</small>
-        </figcaption>
-      </figure>
-      <hr />
-      <h2>Beschreibung:</h2>
-      <p class="text-container">{{ selectedDestination.description }}</p>
-      <section>
+        <figure>
+          <figcaption class="category">
+            <small>{{ selectedDestination.category }}</small>
+          </figcaption>
+        </figure>
         <hr />
-        <h2>Öffnungszeiten:</h2>
-        <p>{{ selectedDestination.openingTime }} - {{ selectedDestination.closingTime }} Uhr</p>
-      </section>
-      <hr />
-      <section>
-        <h2>Kosten:</h2>
-        <p>{{ selectedDestination.price }}</p>
-      </section>
-      <hr />
-      <section>
-        <h2>Anfahrt und ÖPNV:</h2>
-        <p>{{ selectedDestination.street }}</p>
-        <p>{{ selectedDestination.city }}</p>
-        <p>{{ selectedDestination.publicTransport }}</p>
-      </section>
-    </template>
+        <h2>Beschreibung:</h2>
+        <p class="text-container">{{ selectedDestination.description }}</p>
+        <section>
+          <hr />
+          <h2>Öffnungszeiten:</h2>
+          <p>{{ selectedDestination.openingTime }} - {{ selectedDestination.closingTime }} Uhr</p>
+        </section>
+        <hr />
+        <section>
+          <h2>Kosten:</h2>
+          <p>{{ selectedDestination.price }}</p>
+        </section>
+        <hr />
+        <section>
+          <h2>Anfahrt und ÖPNV:</h2>
+          <p>{{ selectedDestination.street }}</p>
+          <p>{{ selectedDestination.city }}</p>
+          <p>{{ selectedDestination.publicTransport }}</p>
+        </section>
+      </template>
 
-    <section>
-      <div class="map-outer-container">
-        <div class="map-container" ref="map"></div>
-      </div>
-    </section>
+      <section>
+        <div class="map-outer-container">
+          <div class="map-container" ref="map"></div>
+        </div>
+      </section>
+    </div>
   </div>
 </template>
 
@@ -330,8 +332,6 @@ export default {
 }
 
 .text-container {
-  text-align: justify;
-  line-height: 150%;
   background-color: rgba(65, 90, 55, 0.113);
 }
 
@@ -389,5 +389,46 @@ hr {
     width: 73px;
     height: 50px;
   }
+}
+
+.high-contrast-mode {
+  background-color: black;
+  color: white;
+}
+
+.high-contrast-mode h1 {
+  color: white;
+}
+
+.high-contrast-mode small {
+  color: white;
+}
+
+.high-contrast-mode .text-container {
+  color: white;
+}
+
+.high-contrast-mode h2 {
+  color: white;
+}
+
+.high-contrast-mode p {
+  color: white;
+}
+
+.high-contrast-mode .map-container {
+  border: 1px solid white;
+}
+
+.high-contrast-mode .readPageBtn {
+  background-color: var(--hc-highlight-color);
+  color: var(--hc-text-color);
+  border-radius: 0.5rem;
+  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
 }
 </style>

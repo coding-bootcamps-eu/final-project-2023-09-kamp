@@ -16,6 +16,18 @@
   --btn-text-color: #ffffff;
   --main-font: sans-serif;
   --infobox-color: #ffff99;
+  --hc-text-color: #fff;
+  --hc-btn-color: #000;
+  --hc-background-color: #000;
+  --hc-highlight-color: #007bff;
+}
+
+.high-contrast-mode {
+  --text-color: var(--hc-text-color);
+  --btn-color: var(--hc-btn-color);
+  --background-color: var(--hc-background-color);
+  --highlight-color: var(--hc-highlight-color);
+  --btn-text-color: white;
 }
 
 html {
