@@ -1,7 +1,8 @@
 <template>
   <div>
     <navbar />
-    <h1>Zugänglichkeit</h1>
+    <h1 class="page-title">Zugänglichkeit</h1>
+    <p>Wähle deinen Reiseweg:</p>
     <div class="choice-wrapper">
       <div
         class="disability-option"
@@ -85,12 +86,6 @@ export default {
   color: var(--text-color);
 }
 
-h1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10px;
-}
 .choice-wrapper {
   display: flex;
   flex-wrap: wrap;
