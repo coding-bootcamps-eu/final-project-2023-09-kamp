@@ -5,6 +5,8 @@
     :style="{ backgroundImage: 'url(https://i.imgur.com/xfx7DFh.jpg)' }"
     alt="Schönes Bergpanorama mit einem Pfad, der sich hinauf zu den Bergen schlängelt"
   >
+    <div v-if="showWarning" class="popup-overlay"></div>
+
     <div class="header">
       <h1>KAMP</h1>
       <p>Dein Begleiter für barrierefreies Abenteuer</p>
@@ -17,17 +19,20 @@
           {{ region.name }}
         </option>
       </select>
-      <button @click="startAdventure" class="start-button">Los Geht's!</button>
+      <button @click="startAdventure" class="btn-start">
+        <p>Los Geht's!</p>
+        <img src="/src/assets/svg/arrow_right.svg" />
+      </button>
     </div>
     <div v-if="showWarning" :class="{ 'popup-warning': true, 'custom-background': true }">
       <div class="popup-inhalt">
-        <span class="close" @click="closePopup"></span>
-        <h3>Hallo Entdecker!</h3>
-        <p>Wähle zuerst eine Region aus.</p>
+        <span class="closePopup" @click="closePopup"></span>
+        <h3 class="popup-title">Hallo Entdecker!</h3>
+        <p class="popup-message">Wähle zuerst eine Region aus.</p>
       </div>
     </div>
 
-    <footer><router-link to="/impressum">Impressum</router-link></footer>
+    <footer class="impressum"><router-link to="/impressum">Impressum</router-link></footer>
   </main>
 </template>
 
@@ -47,11 +52,9 @@ export default {
         router.push('selection')
       } else {
         showWarning.value = true
-        document.body.classList.add('blur')
         setTimeout(() => {
           showWarning.value = false
-          document.body.classList.remove('blur')
-        }, 2500)
+        }, 3000)
         return
       }
 
@@ -82,7 +85,7 @@ export default {
   }
 
   .header {
-    background: var(--background-color);
+    background: var(--background-transparency-color);
     margin: 2rem;
     padding: 16px;
     border-radius: 20px;
@@ -91,11 +94,14 @@ export default {
   h1 {
     color: var(--highlight-color);
     font-size: 3.5rem;
+    font-weight: 700;
     margin-bottom: 8px;
   }
 
   p {
     color: var(--btn-text-color);
+    font-size: 1rem;
+    font-weight: 500;
     margin-bottom: 0;
   }
 
@@ -106,53 +112,71 @@ export default {
 
   .select-dropdown {
     background-color: var(--background-color);
-    color: var(--highlight-color);
-    text-align: center;
-    font-weight: bold;
-    width: 80%;
-    padding: 10px;
-    border: 1px solid var(--text-color);
-    border-radius: 5px;
-    margin-bottom: 20px;
-    font-family: var(--main-font);
+    color: var(--btn-text-color);
+    padding: 0.7rem 0.7rem;
+    margin-bottom: 1rem;
+    margin-top: 5rem;
+    border-radius: 0.5rem;
+    border: none;
+    font-size: 1rem;
+    text-align: left;
+    font-weight: 500;
+    display: flex;
+    width: 100%;
   }
 
-  .start-button {
+  .btn-start {
     background-color: var(--background-color);
-    color: var(--btn-text-color);
-    font-weight: bold;
-    width: 80%;
-    padding: 10px;
+    padding: 0.4rem 0.4rem;
+    border-radius: 0.5rem;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: var(--main-font);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--btn-text-color);
+    width: 100%;
   }
 
   .custom-background {
     background-color: var(--infobox-color);
   }
+
   .popup-warning {
     position: fixed;
-    top: 50%;
+    top: 54%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 10px;
     box-shadow: 0 0 5px var(--infobox-color);
     padding: 10px;
     max-width: 40%;
+    z-index: 10;
   }
 
   .popup-inhalt {
-    text-align: center;
+    text-align: left;
+  }
+
+  .popup-title,
+  .popup-message {
+    color: var(--text-color);
   }
 
   .closePopup {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
-    cursor: pointer;
+  }
+
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Ändere die Hintergrundfarbe nach Bedarf */
+    z-index: 2;
   }
 }
 </style>
