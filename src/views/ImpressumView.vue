@@ -4,12 +4,38 @@
     <div class="impressum-container">
       <h2 class="page-title">Impressum</h2>
       <h3 class="subheaders">Projekt KAMP</h3>
+      <p class="flowing-text">Ein Prototyp für eine Reiseführer-App für barrierefreies Reisen</p>
+
       <p class="flowing-text">Diese Webapplikation wurde erstellt durch:</p>
       <ul class="flowing-text">
-        <li><a href="https://github.com/czeopauli" class="github-links">Paulina</a></li>
-        <li><a href="https://github.com/marijana29" class="github-links">Marijana</a></li>
-        <li><a href="https://github.com/andreasullrich" class="github-links">Andreas</a></li>
-        <li><a href="https://github.com/kristinnorwig" class="github-links">Kristin</a></li>
+        <li>
+          <img src="/src/assets/svg/github-mark.svg" class="github-icon" /><a
+            href="https://github.com/czeopauli"
+            class="github-links"
+            >Paulina</a
+          >
+        </li>
+        <li>
+          <img src="/src/assets/svg/github-mark.svg" class="github-icon" /><a
+            href="https://github.com/marijana29"
+            class="github-links"
+            >Marijana</a
+          >
+        </li>
+        <li>
+          <img src="/src/assets/svg/github-mark.svg" class="github-icon" /><a
+            href="https://github.com/andreasullrich"
+            class="github-links"
+            >Andreas</a
+          >
+        </li>
+        <li>
+          <img src="/src/assets/svg/github-mark.svg" class="github-icon" /><a
+            href="https://github.com/kristinnorwig"
+            class="github-links"
+            >Kristin</a
+          >
+        </li>
       </ul>
       <h3 class="subheaders">Bildnachweise</h3>
       <ul class="pic-sources">
@@ -78,6 +104,23 @@
           Ozeanum Stralsund:
           https://www.deutsches-meeresmuseum.de/presse/meldungen/post/sandtigerhai-niki-im-ozeaneum-stralsund-verstorben
         </li>
+        <li>github Logo: https://github.com/logos</li>
+        <li>
+          Leute Saßen Um Einen Tisch Und Tranken Bier:
+          https://www.pexels.com/de-de/foto/leute-sassen-um-einen-tisch-und-tranken-bier-3009767/
+        </li>
+        <li>
+          Menschen, Die Während Ihrer Reitpause Einen Toast Haben:
+          https://www.pexels.com/de-de/foto/menschen-die-wahrend-ihrer-reitpause-einen-toast-haben-3009746/
+        </li>
+        <li>
+          Tochter, Mutter essen ein Eis:
+          https://www.pexels.com/de-de/foto/liebe-essen-dessert-glucklich-7403005/
+        </li>
+        <li>
+          Mann, Der Auf Grünem Gras Steht:
+          https://www.pexels.com/de-de/foto/mann-der-auf-grunem-gras-steht-16010/
+        </li>
       </ul>
     </div>
   </div>
@@ -99,6 +142,17 @@ export default {
 </script>
 
 <style scoped>
+li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  hyphens: auto;
+  list-style-type: none;
+}
+.github-icon {
+  width: 24px;
+  margin-right: 0.5rem;
+}
 .github-links {
   color: var(--text-color);
 }
@@ -108,9 +162,5 @@ export default {
 }
 .pic-sources {
   font-size: 0.7rem;
-}
-
-li {
-  list-style-type: none;
 }
 </style>
