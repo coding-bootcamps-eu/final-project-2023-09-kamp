@@ -95,8 +95,10 @@
         </figcaption>
       </figure>
       <hr />
+      <h2>Beschreibung:</h2>
       <p class="text-container">{{ selectedDestination.description }}</p>
       <section>
+        <hr />
         <h2>Öffnungszeiten:</h2>
         <p>{{ selectedDestination.openingTime }} - {{ selectedDestination.closingTime }} Uhr</p>
       </section>
@@ -247,12 +249,13 @@ export default {
   all: unset;
   border-radius: 0.5rem;
   background-color: var(--btn-color, #606e51);
-  padding: 4px;
   margin-top: 20px;
   color: white;
-  width: 98%;
+  width: 100%;
   text-align: center;
   margin-bottom: 0.5rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
 }
 
 .category {
@@ -266,6 +269,8 @@ export default {
   font-size: 1rem;
   font-weight: 700;
   width: 23%;
+  display: flex;
+  justify-content: center;
 }
 .carousel-indicators img {
   width: 6rem;
@@ -360,7 +365,7 @@ hr {
   }
 }
 
-@media (max-width: 340px) {
+@media (max-width: 329px) {
   .carousel-indicators {
     position: unset;
     height: 100px;
@@ -369,6 +374,20 @@ hr {
     gap: 0%;
     flex-wrap: wrap;
     visibility: hidden;
+  }
+}
+
+@media (max-width: 407px) {
+  .carousel-indicators img {
+    width: 83px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 369px) {
+  .carousel-indicators img {
+    width: 73px;
+    height: 50px;
   }
 }
 </style>
