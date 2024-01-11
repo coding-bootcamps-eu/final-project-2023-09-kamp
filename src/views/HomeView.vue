@@ -5,7 +5,7 @@
     :style="{ backgroundImage: 'url(https://i.imgur.com/xfx7DFh.jpg)' }"
     alt="Schönes Bergpanorama mit einem Pfad, der sich hinauf zu den Bergen schlängelt"
   >
-    <div v-if="showWarning" class="popup-overlay"></div>
+    <div v-if="showWarning" :class="{ 'popup-overlay': true, active: showWarning }"></div>
 
     <div class="header">
       <h1>KAMP</h1>
@@ -54,7 +54,7 @@ export default {
         showWarning.value = true
         setTimeout(() => {
           showWarning.value = false
-        }, 3000)
+        }, 5000)
         return
       }
 
@@ -177,6 +177,11 @@ export default {
     height: 100%;
     background-color: rgba(255, 255, 255, 0.8); /* Ändere die Hintergrundfarbe nach Bedarf */
     z-index: 2;
+  }
+
+  .impressum a {
+    color: var(--highlight-color);
+    font-weight: 500;
   }
 }
 </style>
