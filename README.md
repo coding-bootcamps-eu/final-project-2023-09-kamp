@@ -1,6 +1,16 @@
 # kamp
 
-This template should help get you started developing with Vue 3 in Vite.
+Creating a prototype for a travel guide app for barrier-free traveling.
+
+Working with:
+- HTML, CSS, JavaScript
+- Vue
+- Bootstrap
+- GitHub
+- Pinia
+- leaflet
+- netlify
+- Visual Studio Code
 
 ## Contributors
 
@@ -10,6 +20,8 @@ This template should help get you started developing with Vue 3 in Vite.
 - Kristin
 
 ## Recommended IDE Setup
+
+This template should help get you started developing with Vue 3 in Vite.
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
